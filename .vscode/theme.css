@@ -83,6 +83,17 @@
   font-size: 10px !important;
   padding: 0 !important;
 }
+/* Activity bar progress badges */
+.part.activitybar .action-item .badge.progress-badge {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 2px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 10px !important;
+  padding: 0 !important;
+}
 
 /* File Explorer custom font */
 .monaco-tree .monaco-tree-row .label-name,
