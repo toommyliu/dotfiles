@@ -177,4 +177,49 @@
 .monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab .tab-border-bottom-container {
   display: none !important;
 }
+
+/* #endregion */
+
+/* #region Panel / Terminal Tabs */
+
+/* Prefer normal casing */
+.monaco-workbench .pane-composite-part>.title>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item,
+.monaco-workbench .pane-composite-part>.header-or-footer>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item {
+  text-transform: none !important;
+}
+
+/* Base style for all tabs in the panel title */
+.composite.title .monaco-action-bar .action-item {
+  border-radius: 4px !important;
+  margin-right: 4px !important;
+  padding: 2px 4px !important;
+  border: none !important;
+}
+
+/* Hide the default active indicator line */
+.composite.title .active-item-indicator {
+  display: none !important;
+}
+
+/* Selected state - Ghost button style */
+.composite.title .monaco-action-bar .action-item.checked {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Remove default border bottom on the label and add padding */
+.composite.title .monaco-action-bar .action-item .action-label {
+  border-bottom: none !important;
+}
+
+/* Hover state */
+.composite.title .monaco-action-bar .action-item:not(.checked):hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.monaco-workbench .pane-composite-part>.title>.composite-bar-container>.composite-bar>.monaco-action-bar,
+.monaco-workbench .pane-composite-part>.header-or-footer>.composite-bar-container>.composite-bar>.monaco-action-bar {
+  line-height: normal !important;
+}
+
+/* #endregion */
 /* #endregion */
