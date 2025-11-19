@@ -2,6 +2,7 @@
 #workbench\.parts\.activitybar {
   padding: 0 !important;
 }
+
 #workbench\.parts\.activitybar .content {
   width: 48px !important;
   padding: 0 !important;
@@ -10,6 +11,7 @@
   flex-direction: column !important;
   align-items: center !important;
 }
+
 .part.activitybar .composite-bar {
   padding: 0 !important;
   margin: 0 !important;
@@ -18,11 +20,13 @@
   flex-direction: column !important;
   align-items: center !important;
 }
+
 .part.activitybar .composite-bar .monaco-action-bar {
   width: 100% !important;
   display: flex !important;
   justify-content: center !important;
 }
+
 .part.activitybar .composite-bar .actions-container {
   padding: 0 !important;
   margin: 0 !important;
@@ -31,6 +35,7 @@
   flex-direction: column !important;
   align-items: center !important;
 }
+
 .part.activitybar .composite-bar .actions-container .action-item {
   width: 48px !important;
   height: 48px !important;
@@ -40,6 +45,7 @@
   padding: 0 !important;
   margin: 0 !important;
 }
+
 .part.activitybar .action-label {
   font-size: 18px !important;
   display: inline-flex !important;
@@ -49,20 +55,60 @@
   height: auto !important;
   margin: 0 !important;
 }
+
 /* Hide the active indicator completely and remove its space */
 .part.activitybar .active-item-indicator {
   display: none !important;
   width: 0 !important;
   height: 0 !important;
 }
+
 /* Active state - background only on icon */
-.part.activitybar
-  .composite-bar
-  .actions-container
-  .action-item[aria-selected="true"]
-  .action-label {
+.part.activitybar .composite-bar .actions-container .action-item[aria-selected="true"] .action-label {
   background-color: rgba(255, 255, 255, 0.1) !important;
   padding: 3px !important;
   width: 32px !important;
   height: 32px !important;
 }
+/* 
+Titlebar profile and settings icons
+.titlebar-profile-icon,
+.titlebar-settings-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-right: 4px !important;
+}
+
+.titlebar-profile-icon .action-label,
+.titlebar-settings-icon .action-label {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 4px !important;
+  font-size: 16px !important;
+}
+
+Hide badges when in titlebar
+.titlebar-profile-icon .badge,
+.titlebar-settings-icon .badge,
+.titlebar-profile-icon .profile-badge,
+.titlebar-settings-icon .profile-badge {
+  display: none !important;
+}
+
+Hover effect for titlebar icons
+.titlebar-profile-icon:hover .action-label,
+.titlebar-settings-icon:hover .action-label {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 4px !important;
+}
+
+.separator {
+  display: inline-block !important;
+  width: 1px !important;
+  height: 12px !important;
+  background-color: rgba(204, 204, 204, 0.3) !important;
+  flex: 0 0 auto !important;
+  pointer-events: none !important;
+} */
