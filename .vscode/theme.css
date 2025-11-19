@@ -24,6 +24,10 @@ body {
   -webkit-font-smoothing: auto;
 }
 
+a.action-label {
+  font-size: 12px !important;
+}
+
 /* #endregion */
 
 /* #region Primary Activity Bar */
