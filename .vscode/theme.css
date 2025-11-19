@@ -84,6 +84,12 @@
   padding: 0 !important;
 }
 
+/* File Explorer custom font */
+.monaco-tree .monaco-tree-row .label-name,
+.monaco-list .monaco-list-row .monaco-icon-label .label-name {
+  font-family: "JetBrainsMono Nerd Font" !important;
+}
+
 /* 
 Titlebar profile and settings icons
 .titlebar-profile-icon,
