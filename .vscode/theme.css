@@ -151,6 +151,10 @@
   height: 100% !important;
 }
 
+.monaco-icon-label.italic>.monaco-icon-label-container>.monaco-icon-name-container>.label-name,
+.monaco-icon-label.italic>.monaco-icon-label-container>.monaco-icon-description-container>.label-description {
+  font-style: normal !important;
+}
 .monaco-icon-label-container>.label-name {
   font-style: normal !important;
 }
