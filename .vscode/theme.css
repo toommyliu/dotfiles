@@ -1,3 +1,5 @@
+/* #region Primary Activity Bar */
+
 /* Primary Activity Bar Icons */
 #workbench\.parts\.activitybar {
   padding: 0 !important;
@@ -83,6 +85,7 @@
   font-size: 10px !important;
   padding: 0 !important;
 }
+
 /* Activity bar progress badges */
 .part.activitybar .action-item .badge.progress-badge {
   width: 12px !important;
@@ -94,6 +97,9 @@
   font-size: 10px !important;
   padding: 0 !important;
 }
+/* #endregion */
+
+/* #region File Explorer */
 
 /* File Explorer custom font */
 .monaco-tree .monaco-tree-row .label-name,
@@ -101,45 +107,74 @@
   font-family: "JetBrainsMono Nerd Font" !important;
 }
 
-/* 
-Titlebar profile and settings icons
-.titlebar-profile-icon,
-.titlebar-settings-icon {
-  display: inline-flex !important;
+/* #endregion */
+
+/* #region Tabs */
+
+/* Rounded tabs */
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab {
+  border-radius: 6px !important;
+  margin: 3px 3px !important;
+  border: none !important;
+  padding: 2px 6px !important;
+  height: 26px !important;
+  background-color: transparent !important;
+  border-right: none !important;
+  display: flex !important;
   align-items: center !important;
-  justify-content: center !important;
-  margin-right: 4px !important;
 }
 
-.titlebar-profile-icon .action-label,
-.titlebar-settings-icon .action-label {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 4px !important;
-  font-size: 16px !important;
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab.active.selected {
+  background-color: var(--vscode-editor-background) !important;
+  position: relative !important;
+  z-index: 1 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
 }
 
-Hide badges when in titlebar
-.titlebar-profile-icon .badge,
-.titlebar-settings-icon .badge,
-.titlebar-profile-icon .profile-badge,
-.titlebar-settings-icon .profile-badge {
+/* Remove the top border indicator */
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab.active.selected>.tab-border-top-container {
   display: none !important;
 }
 
-Hover effect for titlebar icons
-.titlebar-profile-icon:hover .action-label,
-.titlebar-settings-icon:hover .action-label {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  border-radius: 4px !important;
+/* Hover state for inactive tabs */
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab:not(.active):hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
-.separator {
-  display: inline-block !important;
-  width: 1px !important;
-  height: 12px !important;
-  background-color: rgba(204, 204, 204, 0.3) !important;
-  flex: 0 0 auto !important;
-  pointer-events: none !important;
-} */
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab .tab-label {
+  font-family: "JetBrainsMono Nerd Font" !important;
+  font-size: 12px !important;
+  padding: 0 2px !important;
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+.monaco-icon-label-container>.label-name {
+  font-style: normal !important;
+}
+
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab .tab-label .monaco-icon-label-container {
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Fix source control indicator alignment */
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab .tab-label::after {
+  align-self: center !important;
+  margin-top: 1px !important;
+  margin-left: 8px !important;
+  margin-right: -2px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab .tab-actions .action-label {
+  margin-right: 0 !important;
+}
+
+/* Remove the redundant bottom border indicator */
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab .tab-border-bottom-container {
+  display: none !important;
+}
+/* #endregion */
