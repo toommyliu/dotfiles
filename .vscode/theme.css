@@ -97,6 +97,7 @@
   font-size: 10px !important;
   padding: 0 !important;
 }
+
 /* #endregion */
 
 /* #region File Explorer */
@@ -222,4 +223,31 @@
 }
 
 /* #endregion */
+
+/* #region General */
+
+body {
+  font-family: -apple-system, "system-ui", sans-serif;
+  font-kerning: auto;
+  font-optical-sizing: auto;
+  font-palette: normal;
+  font-size: 12px;
+  font-size-adjust: none;
+  font-stretch: 100%;
+  font-style: normal;
+  font-synthesis-small-caps: auto;
+  font-synthesis-style: auto;
+  font-synthesis-weight: auto;
+  font-variant: normal;
+  font-variant-alternates: normal;
+  font-variant-caps: normal;
+  font-variant-east-asian: normal;
+  font-variant-emoji: normal;
+  font-variant-ligatures: normal;
+  font-variant-numeric: normal;
+  font-variant-position: normal;
+  font-weight: 500;
+  -webkit-font-smoothing: auto;
+}
+
 /* #endregion */
