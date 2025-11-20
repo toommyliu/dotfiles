@@ -41,13 +41,13 @@ a.action-label {
   align-items: center !important;
 }
 
-.part.activitybar .composite-bar .monaco-action-bar {
+.part.activitybar .monaco-action-bar {
   width: 100% !important;
   display: flex !important;
   justify-content: center !important;
 }
 
-.part.activitybar .composite-bar .actions-container {
+.part.activitybar .actions-container {
   padding: 0 !important;
   margin: 0 !important;
   width: 100% !important;
@@ -56,7 +56,7 @@ a.action-label {
   align-items: center !important;
 }
 
-.part.activitybar .composite-bar .actions-container .action-item {
+.part.activitybar .actions-container .action-item {
   width: 48px !important;
   height: 48px !important;
   display: flex !important;
@@ -85,7 +85,7 @@ a.action-label {
 }
 
 /* Active state - background only on icon */
-.part.activitybar .composite-bar .actions-container .action-item[aria-selected="true"] .action-label {
+.part.activitybar .actions-container .action-item[aria-selected="true"] .action-label {
   background-color: rgba(255, 255, 255, 0.1) !important;
   padding: 3px !important;
   width: 32px !important;
