@@ -263,13 +263,16 @@ a.action-label {
   padding: 1px 2px !important;
   background-color: transparent !important;
 }
+
 /* Single unified hover for the entire dropdown-with-default */
 .monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default:hover {
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
+
 .monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default:active {
   background-color: rgba(255, 255, 255, 0.12) !important;
 }
+
 .monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default .action-container {
   width: 20px !important;
   height: 20px !important;
@@ -280,13 +283,16 @@ a.action-label {
   padding: 0 !important;
   margin: 0 !important;
 }
+
 .monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default .action-container:hover {
   background-color: transparent !important;
 }
+
 .monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default .dropdown-action-container {
   display: flex !important;
   align-items: center !important;
 }
+
 .monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default .dropdown-action-container .dropdown-label {
   width: auto !important;
   height: 24px !important;
@@ -296,6 +302,7 @@ a.action-label {
   padding-right: 3px !important;
   background-color: transparent !important;
 }
+
 .monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default .dropdown-action-container .dropdown-label:hover {
   background-color: transparent !important;
 }
@@ -324,9 +331,11 @@ a.action-label {
   text-shadow: none !important;
   border: none !important;
 }
+
 .monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):hover {
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
+
 .monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):active {
   background-color: rgba(255, 255, 255, 0.12) !important;
   box-shadow: none !important;
@@ -874,6 +883,44 @@ a.action-label {
 
 .monaco-workbench.context-menu-visible .monaco-list.list_id_6.last-focused:not(.sticky-scroll-focused) .monaco-tree-sticky-container .monaco-list-rows .monaco-list-row.focused {
   outline: inherit;
+}
+
+/* #endregion */
+
+/*region Random */
+
+/* Source control tab status indicator [A(dded), M(odified), D(eleted), U(nadded)] */
+.scm-view .monaco-icon-label {
+  display: flex !important;
+  align-items: center !important;
+  height: 22px !important;
+}
+
+.scm-view .monaco-icon-label-container {
+  display: flex !important;
+  align-items: center !important;
+  flex: 0 1 auto !important;
+}
+
+.scm-view .monaco-icon-label::after,
+.scm-view .monaco-icon-label:after {
+  font-size: 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 22px !important;
+  height: 22px !important;
+  margin-left: 8px !important;
+  margin-right: 4px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ensure the actions container is also properly aligned */
+.scm-view .monaco-icon-label .actions {
+  display: flex !important;
+  align-items: center !important;
+  height: 22px !important;
+  margin-left: auto !important;
 }
 
 /* #endregion */
