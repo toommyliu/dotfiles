@@ -84,3 +84,70 @@
 //         subtree: true
 //     });
 // }
+
+/*
+(function () {
+	function patch() {
+		const e1 = document.querySelector(".right-items");
+		const e2 = document.querySelector(".right-items .__CUSTOM_CSS_JS_INDICATOR_CLS");
+		if (e1 && !e2) {
+			let e = document.createElement("div");
+			e.id = "be5invis.vscode-custom-css";
+			e.title = "Custom CSS and JS";
+			e.className = "statusbar-item right __CUSTOM_CSS_JS_INDICATOR_CLS";
+			{
+				const a = document.createElement("a");
+				a.tabIndex = -1;
+				a.className = 'statusbar-item-label';
+				{
+					const span = document.createElement("span");
+					span.className = "codicon codicon-paintcan";
+					a.appendChild(span);
+				}
+				e.appendChild(a);
+			}
+			e1.appendChild(e);
+		}
+	}
+	setInterval(patch, 5000);
+})();
+*/
+
+function waitUntil(condition) {
+	return new Promise((resolve) => {
+		const check = () => {
+			if (condition()) {
+				resolve();
+			} else {
+				requestAnimationFrame(check);
+			}
+		};
+
+		check();
+	});
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+	await waitUntil(() => document.querySelector(".right-items"));
+
+    // Remove the custom CSS watermark added by the extension
+    const observer = new MutationObserver((mutations) => {
+		for (const mutation of mutations) {
+			for (const node of mutation.addedNodes) {
+				if (node.id === "be5invis.vscode-custom-css") {
+					console.log('[theme] removing custom CSS watermark');
+					node.remove();
+				}
+			}
+		}
+        });
+    });
+
+    const rightItems = document.querySelector(".right-items");
+    if (rightItems) {
+        console.log('attached');
+        observer.observe(rightItems, { childList: true, subtree: true });
+        const existing = document.getElementById("be5invis.vscode-custom-css");
+        existing?.remove();
+	}
+});
