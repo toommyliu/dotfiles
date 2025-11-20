@@ -102,6 +102,7 @@ a.action-label {
   justify-content: center !important;
   font-size: 10px !important;
   padding: 0 !important;
+  margin-right: 4px !important;
 }
 
 /* Activity bar progress badges */
@@ -114,6 +115,7 @@ a.action-label {
   justify-content: center !important;
   font-size: 10px !important;
   padding: 0 !important;
+  margin-right: 4px !important;
 }
 
 /* #endregion */
