@@ -910,7 +910,7 @@ a.action-label {
 
 /* #endregion */
 
-/*region Random */
+/* #region Random */
 
 /* Source control tab status indicator [A(dded), M(odified), D(eleted), U(nadded)] */
 .scm-view .monaco-icon-label {
