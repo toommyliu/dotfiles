@@ -1,27 +1,13 @@
 /* #region General / typography */
 
-body {
-  font-family: -apple-system, "system-ui", sans-serif;
-  font-kerning: auto;
-  font-optical-sizing: auto;
-  font-palette: normal;
-  font-size: 12px !important;
-  font-size-adjust: none;
-  font-stretch: 100%;
-  font-style: normal;
-  font-synthesis-small-caps: auto;
-  font-synthesis-style: auto;
-  font-synthesis-weight: auto;
-  font-variant: normal;
-  font-variant-alternates: normal;
-  font-variant-caps: normal;
-  font-variant-east-asian: normal;
-  font-variant-emoji: normal;
-  font-variant-ligatures: normal;
-  font-variant-numeric: normal;
-  font-variant-position: normal;
+* {
+  text-transform: none !important;
   font-weight: 500 !important;
-  -webkit-font-smoothing: auto;
+}
+
+h2,
+h3 {
+  font-size: 12px !important;
 }
 
 a.action-label {
@@ -220,12 +206,6 @@ a.action-label {
 
 /* #region Panel / Terminal Tabs */
 
-/* Prefer normal casing */
-.monaco-workbench .pane-composite-part>.title>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item,
-.monaco-workbench .pane-composite-part>.header-or-footer>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item {
-  text-transform: none !important;
-}
-
 /* Base style for all tabs in the panel title */
 .composite.title .monaco-action-bar .action-item {
   border-radius: 4px !important;
@@ -257,6 +237,262 @@ a.action-label {
 .monaco-workbench .pane-composite-part>.title>.composite-bar-container>.composite-bar>.monaco-action-bar,
 .monaco-workbench .pane-composite-part>.header-or-footer>.composite-bar-container>.composite-bar>.monaco-action-bar {
   line-height: normal !important;
+}
+
+/* #endregion */
+
+/* #region Action Items */
+
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)) {
+  width: 24px !important;
+  height: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 4px !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 2px !important;
+}
+
+/* Special cases for monaco-dropdown-with-default (like the plus icon + dropdown icon) */
+.monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default {
+  width: auto !important;
+  display: flex !important;
+  border-radius: 4px !important;
+  padding: 1px 2px !important;
+  background-color: transparent !important;
+}
+/* Single unified hover for the entire dropdown-with-default */
+.monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+.monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default:active {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+}
+.monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default .action-container {
+  width: 20px !important;
+  height: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default .action-container:hover {
+  background-color: transparent !important;
+}
+.monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default .dropdown-action-container {
+  display: flex !important;
+  align-items: center !important;
+}
+.monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default .dropdown-action-container .dropdown-label {
+  width: auto !important;
+  height: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-left: 1px !important;
+  padding-right: 3px !important;
+  background-color: transparent !important;
+}
+.monaco-toolbar .monaco-action-bar .action-item.monaco-dropdown-with-default .dropdown-action-container .dropdown-label:hover {
+  background-color: transparent !important;
+}
+
+/* Action label (icon) sizing - center without interfering with codicon ::before */
+.monaco-toolbar .monaco-action-bar .actions-container .action-item .action-label.codicon:not(:has(.chat-model-label)):not(.separator),
+.monaco-toolbar .monaco-action-bar .actions-container .action-item .dropdown-label .action-label.codicon:not(:has(.chat-model-label)):not(.separator) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Ensure codicon ::before pseudo-elements render properly for ALL toolbar icons */
+.monaco-toolbar .monaco-action-bar .action-label.codicon::before,
+.monaco-toolbar .monaco-dropdown .dropdown-label .action-label.codicon::before {
+  display: inline-block !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border: none !important;
+}
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):active {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Disabled state */
+.monaco-toolbar .monaco-action-bar .actions-container .action-item.disabled:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)) {
+  opacity: 0.4 !important;
+}
+
+.monaco-toolbar .monaco-action-bar .actions-container .action-item.disabled:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):hover {
+  background-color: transparent !important;
+}
+
+/* Checked/selected state - apply to container with slightly reduced opacity */
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.action-label.codicon.checked):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)) {
+  background-color: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* Remove ALL styling from checked action-labels to prevent inner indicators */
+.monaco-toolbar .monaco-action-bar .actions-container .action-item .action-label.codicon.checked:not(:has(.chat-model-label)) {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Remove inner indicators from checked icon ::before elements */
+.monaco-toolbar .monaco-action-bar .action-label.codicon.checked::before {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  background: none !important;
+}
+
+/* Remove hover effects and glowing from anchor elements */
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)) a.action-label {
+  background: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)) a.action-label:hover {
+  background: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)) a.action-label:focus {
+  background: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)) a.action-label:active {
+  background: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Remove hover effects from list items */
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):hover a.action-label {
+  background: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Remove hover indicators on custom-hover attribute - only ::after, not ::before */
+.monaco-toolbar .codicon[custom-hover="true"]::after {
+  display: none !important;
+}
+
+/* Disable any default hover effects on codicon SVGs */
+.monaco-toolbar .codicon svg {
+  pointer-events: none !important;
+}
+
+/* Separator styling - make visible with vertical bar */
+.monaco-toolbar .monaco-action-bar .actions-container .action-item .action-label.separator {
+  width: 1px !important;
+  height: 18px !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  margin: 0 6px !important;
+  padding: 0 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+/* Reduce container width for separator */
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.separator) {
+  width: auto !important;
+  min-width: 13px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  background-color: transparent !important;
+}
+
+/* Specific targeting for title-actions toolbar separator */
+.title-actions .monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.separator) {
+  width: 13px !important;
+  height: 24px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  pointer-events: none !important;
+}
+
+.title-actions .monaco-toolbar .monaco-action-bar .actions-container .action-item .action-label.separator {
+  width: 1px !important;
+  height: 18px !important;
+  min-height: 18px !important;
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.3) !important;
+  margin: 0 6px !important;
+  padding: 0 !important;
+  display: block !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  outline: none !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Hide the separator icon itself, show only the bar */
+.monaco-toolbar .monaco-action-bar .action-label.separator::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Ensure activitybar is NOT affected by these rules */
+.part.activitybar .action-item {
+  width: 48px !important;
+  height: 48px !important;
+}
+
+.part.activitybar .action-label.codicon {
+  font-size: 18px !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* Ensure notification toolbar icons are NOT affected */
+.notification-list-item-toolbar-container .monaco-action-bar .action-item {
+  /* Reset to defaults for notifications */
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.notification-list-item-toolbar-container .action-label.codicon {
+  font-size: inherit !important;
+  line-height: inherit !important;
 }
 
 /* #endregion */
