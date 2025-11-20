@@ -245,7 +245,7 @@ a.action-label {
 
 /* #region Action Items */
 
-.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)) {
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):not(:has(.extension-action)) {
   width: 24px !important;
   height: 24px !important;
   display: flex !important;
@@ -334,27 +334,27 @@ a.action-label {
   border: none !important;
 }
 
-.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):hover {
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):not(:has(.extension-action)):hover {
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
-.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):active {
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):not(:has(.extension-action)):active {
   background-color: rgba(255, 255, 255, 0.12) !important;
   box-shadow: none !important;
   outline: none !important;
 }
 
 /* Disabled state */
-.monaco-toolbar .monaco-action-bar .actions-container .action-item.disabled:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)) {
+.monaco-toolbar .monaco-action-bar .actions-container .action-item.disabled:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):not(:has(.extension-action)) {
   opacity: 0.4 !important;
 }
 
-.monaco-toolbar .monaco-action-bar .actions-container .action-item.disabled:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):hover {
+.monaco-toolbar .monaco-action-bar .actions-container .action-item.disabled:has(.codicon):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):not(:has(.extension-action)):hover {
   background-color: transparent !important;
 }
 
 /* Checked/selected state - apply to container with slightly reduced opacity */
-.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.action-label.codicon.checked):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)) {
+.monaco-toolbar .monaco-action-bar .actions-container .action-item:has(.action-label.codicon.checked):not(.chat-modelPicker-item):not(:has(.notification-list-item-toolbar-container)):not(.monaco-dropdown-with-default):not(:has(.separator)):not(:has(.extension-action)) {
   background-color: rgba(255, 255, 255, 0.07) !important;
 }
 
@@ -499,11 +499,32 @@ a.action-label {
   margin: 0 !important;
   padding: 0 !important;
   border-radius: 0 !important;
+  background-color: transparent !important;
 }
 
 .notification-list-item-toolbar-container .action-label.codicon {
-  font-size: inherit !important;
-  line-height: inherit !important;
+  font-size: 16px !important;
+  line-height: 16px !important;
+  width: 16px !important;
+  height: 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Extension action icons (manage/settings icon in extensions list) */
+.extension-list-item .monaco-action-bar .action-item .action-label.codicon.extension-action:not(.hide) {
+  font-size: 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
+/* Restore font size for the Manage (Settings) icon */
+.extension-list-item .monaco-action-bar .action-item .action-label.codicon.extension-action.manage {
+  font-size: 16px !important;
+  margin-right: 4px !important;
 }
 
 /* #endregion */
@@ -923,6 +944,18 @@ a.action-label {
   align-items: center !important;
   height: 22px !important;
   margin-left: auto !important;
+}
+
+/* Hide ALL disabled action items in extensions list to prevent jank */
+.extension-list-item .monaco-action-bar .action-item.disabled {
+  display: none !important;
+}
+
+/* Fix font for text actions in extensions list (e.g. "Restart extensions", "Reload", "Migrate") */
+.extension-list-item .monaco-action-bar .action-item .action-label.label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
+  font-size: 11px !important;
+  margin-right: 4px !important;
 }
 
 /* #endregion */
