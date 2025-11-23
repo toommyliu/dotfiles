@@ -15,6 +15,7 @@
 
     # communication
     cask "zoom"
+    cask "discord"
 
     # utilities
     cask "stats"
