@@ -16,6 +16,7 @@
     # communication
     cask "zoom"
 
+    # utilities
     cask "stats"
 
     # dev apps
