@@ -1,3 +1,5 @@
+tap "sdkman/tap"
+
 # Apps
     # browsers
     cask "arc"
@@ -45,6 +47,7 @@ cask "font-ubuntu-mono"
 cask "font-jetbrains-mono"
 brew "gh"
 brew "git"
+brew "sdkman-cli" # java version manager
 
 # Languages
 brew "go"
