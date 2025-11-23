@@ -1,21 +1,31 @@
 # Apps
-cask "spotify"
-cask "notion"
-cask "notion-calendar"
-cask "raycast"
-cask "rectangle"
-cask "alt-tab"
-cask "todoist-app"
-cask "google-chrome"
-cask "zoom"
-cask "stats"
-cask "ghostty"
-cask "sublime-merge"
-cask "visual-studio-code"
-cask "zed"
-cask "intellij-idea"
-cask "jetbrains-toolbox"
-cask "pearcleaner"
+    # browsers
+    cask "arc"
+    cask "helium-browser"
+    cask "google-chrome"
+
+    # productivity
+    cask "spotify"
+    cask "notion"
+    cask "notion-calendar"
+    cask "raycast"
+    cask "rectangle"
+    cask "alt-tab"
+    cask "todoist-app"
+
+    # communication
+    cask "zoom"
+
+    cask "stats"
+
+    # dev apps
+    cask "ghostty"
+    cask "sublime-merge"
+    cask "visual-studio-code"
+    cask "zed"
+    cask "intellij-idea"
+    cask "jetbrains-toolbox"
+    cask "pearcleaner"
 
 # Media stuff
 brew "yt-dlp"
