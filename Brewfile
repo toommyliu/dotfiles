@@ -1,7 +1,7 @@
 tap "sdkman/tap"
 
 # Apps
-    # (chromium-based)browsers
+    # (chromium-based) browsers
     cask "arc" 
     cask "helium-browser"
     cask "google-chrome"
