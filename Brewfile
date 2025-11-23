@@ -1,43 +1,44 @@
 tap "sdkman/tap"
 
 # Apps
-    # browsers
-    cask "arc"
+    # (chromium-based)browsers
+    cask "arc" 
     cask "helium-browser"
     cask "google-chrome"
 
     # productivity
-    cask "spotify"
-    cask "notion"
-    cask "notion-calendar"
-    cask "raycast"
-    cask "rectangle"
-    cask "alt-tab"
-    cask "todoist-app"
+    cask "spotify" # audio client
+    cask "notion" # productivity workspace
+    cask "notion-calendar" # elegant calendar
+    cask "raycast" # supercharge command launcher
+    cask "rectangle" # window management
+    cask "alt-tab" # windows-like alt-tab
+    cask "todoist-app" # task management
 
     # communication
     cask "zoom"
     cask "discord"
 
     # utilities
-    cask "stats"
+    cask "stats" # menubar resource monitor
+    cask "onyx" # system utilities & maintenance
+    cask "omnidisksweeper" # disk maintenance
 
     # dev apps
-    cask "ghostty"
-    cask "sublime-merge"
-    cask "visual-studio-code"
-    cask "zed"
-    cask "intellij-idea"
-    cask "jetbrains-toolbox"
-    cask "pearcleaner"
+    cask "ghostty" # terminal emulator
+    cask "sublime-merge" # git source control app
+    cask "visual-studio-code" # code editor
+    cask "zed" # code editor
+    cask "intellij-idea" # java IDE
+    cask "jetbrains-toolbox" # manage JetBrains IDEs
 
 # Media stuff
-brew "yt-dlp"
-brew "ffmpeg"
-brew "gallery-dl"
+brew "yt-dlp" # youtube downloader
+brew "ffmpeg" # a/v processing
+brew "gallery-dl" # social-media downloader
 
 # AI stuff
-brew "gemini-cli"
+brew "gemini-cli" # cli for Google Gemini
 
 # Dev stuff
 cask "font-cascadia-code"
@@ -45,8 +46,8 @@ cask "font-commit-mono"
 cask "font-noto-sans-mono"
 cask "font-ubuntu-mono"
 cask "font-jetbrains-mono"
-brew "gh"
-brew "git"
+brew "gh" # github cli
+brew "git" # version control
 brew "sdkman-cli" # java version manager
 
 # Languages
@@ -54,11 +55,11 @@ brew "go"
 brew "python@3.13"
 
 # Javscript stuff
-brew "nvm"
-brew "pnpm"
+brew "nvm" # node version manager
+brew "pnpm" # efficient package manager
 brew "yarn"
-brew "oven-sh/bun/bun"
-brew "deno"
+brew "oven-sh/bun/bun" # all-in-one javascript runtime, bundler, package manager
+brew "deno" # next-generation javascript runtime
 
 # Python stuff
-brew "virtualenv"
+brew "virtualenv" # manage virtual environments
