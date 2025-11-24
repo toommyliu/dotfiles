@@ -10,7 +10,7 @@ tap "sdkman/tap"
     cask "spotify" # audio client
     cask "notion" # productivity workspace
     cask "notion-calendar" # elegant calendar
-    cask "raycast" # supercharge command launcher
+    cask "raycast" # supercharged command launcher
     cask "rectangle" # window management
     cask "alt-tab" # windows-like alt-tab
     cask "todoist-app" # task management
