@@ -23,6 +23,7 @@ tap "sdkman/tap"
     cask "stats" # menubar resource monitor
     cask "onyx" # system utilities & maintenance
     cask "omnidisksweeper" # disk maintenance
+    cask "bitwarden" # password manager
 
     # dev apps
     cask "ghostty" # terminal emulator
