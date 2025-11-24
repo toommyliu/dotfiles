@@ -53,3 +53,27 @@ fi
 # symlink dotfiles
 echo "Symlinking dotfiles..."
 ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
+
+# setup nvm and install node versions
+if [ -d "$HOME/.nvm" ]; then
+  echo "Setting up NVM and installing Node.js versions..."
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+  
+  # install latest LTS version
+  echo "Installing Node.js LTS..."
+  nvm install --lts
+  
+  # install latest version
+  echo "Installing latest Node.js..."
+  nvm install node
+  
+  # set latest as default
+  nvm alias default node
+  nvm use default
+  
+  echo "Node.js versions installed:"
+  nvm list
+  echo "Default version:"
+  node --version
+fi
