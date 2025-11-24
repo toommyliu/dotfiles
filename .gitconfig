@@ -1,3 +1,22 @@
 [user]
     name = toommyliu
     email = 86510873+toommyliu@users.noreply.github.com
+
+[alias]
+    co = checkout # git co
+    br = branch # git br
+    st = status # git st
+    sw = switch # git sw
+    a = add # git a
+    aa = add --all # git aa
+    p = push # git p
+    pu = pull # git pu
+    pforce = push --force # git pforce
+    f = fetch # git f
+    fp = fetch --prune # git fp
+    soft = reset --soft # git soft - uncommits but keeps changes staged
+    mixed = reset --mixed # git mixed - uncommits and unstages changes
+    hard = reset --hard # git hard - uncommits, unstages, and discards changes
+    nuke = !git reset --hard HEAD && git clean -fd # git nuke - uncommits, unstages, and discards changes
+    cleanup = !git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n 1 git branch -d # removes local branches that are merged
+     
