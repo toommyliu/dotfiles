@@ -47,6 +47,7 @@ cask "font-commit-mono"
 cask "font-noto-sans-mono"
 cask "font-ubuntu-mono"
 cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
 brew "gh" # github cli
 brew "git" # version control
 brew "sdkman-cli" # java version manager
