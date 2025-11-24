@@ -48,4 +48,8 @@ if [ "$has_brew" -eq 0 ]; then
 
   # turn off brew analytics
   brew analytics off
-if
+fi
+
+# symlink dotfiles
+echo "Symlinking dotfiles..."
+ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
