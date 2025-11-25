@@ -75,6 +75,24 @@ ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
 # setup nvm and install node versions
 if [ -d "$HOME/.nvm" ]; then
   echo "Setting up NVM and installing Node.js versions..."
+  
+  if ! grep -q "nvm.sh" "$HOME/.zshrc" 2>/dev/null; then
+    echo '' >> "$HOME/.zshrc"
+    echo '# NVM' >> "$HOME/.zshrc"
+    echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/.zshrc"
+    echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm' >> "$HOME/.zshrc"
+    echo '[ -s "/opt/homebrew/opt/nvm/bash_completion" ] && \. "/opt/homebrew/opt/nvm/bash_completion"  # This loads nvm bash_completion' >> "$HOME/.zshrc"
+  fi
+  
+  if ! grep -q "nvm.sh" "$HOME/.bash_profile" 2>/dev/null; then
+    echo '' >> "$HOME/.bash_profile"
+    echo '# NVM' >> "$HOME/.bash_profile"
+    echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/.bash_profile"
+    echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm' >> "$HOME/.bash_profile"
+    echo '[ -s "/opt/homebrew/opt/nvm/bash_completion" ] && \. "/opt/homebrew/opt/nvm/bash_completion"  # This loads nvm bash_completion' >> "$HOME/.bash_profile"
+  fi
+  
+  # load nvm for current session
   export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
 
@@ -94,15 +112,15 @@ if [ -d "$HOME/.nvm" ]; then
   nvm list
   echo "Default version:"
   node --version
+  
+  echo "NVM configuration added to shell profiles"
 fi
 
 # setup sdkman
 echo "Setting up SDKMAN..."
-# sdkman-cli from brew - use brew --prefix for portability
 SDKMAN_BREW_DIR="$(brew --prefix sdkman-cli)/libexec"
 
 if [ -s "${SDKMAN_BREW_DIR}/bin/sdkman-init.sh" ]; then
-  # add sdkman init to .zshrc if not already present
   if ! grep -q "sdkman-init.sh" "$HOME/.zshrc" 2>/dev/null; then
     echo '' >> "$HOME/.zshrc"
     echo '# SDKMAN' >> "$HOME/.zshrc"
@@ -110,7 +128,6 @@ if [ -s "${SDKMAN_BREW_DIR}/bin/sdkman-init.sh" ]; then
     echo '[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"' >> "$HOME/.zshrc"
   fi
   
-  # add sdkman init to .bash_profile if not already present
   if ! grep -q "sdkman-init.sh" "$HOME/.bash_profile" 2>/dev/null; then
     echo '' >> "$HOME/.bash_profile"
     echo '# SDKMAN' >> "$HOME/.bash_profile"
@@ -122,6 +139,86 @@ if [ -s "${SDKMAN_BREW_DIR}/bin/sdkman-init.sh" ]; then
   echo "Open a new terminal and run 'sdk version' to verify installation"
 else
   echo "Warning: SDKMAN init script not found at ${SDKMAN_BREW_DIR}/bin/sdkman-init.sh"
+fi
+
+# setup Go
+echo "Setting up Go..."
+if command -v go &>/dev/null; then
+  if ! grep -q "GOPATH" "$HOME/.zshrc" 2>/dev/null; then
+    echo '' >> "$HOME/.zshrc"
+    echo '# Go' >> "$HOME/.zshrc"
+    echo 'export GOPATH="$HOME/go"' >> "$HOME/.zshrc"
+    echo 'export PATH="$GOPATH/bin:$PATH"' >> "$HOME/.zshrc"
+  fi
+  
+  if ! grep -q "GOPATH" "$HOME/.bash_profile" 2>/dev/null; then
+    echo '' >> "$HOME/.bash_profile"
+    echo '# Go' >> "$HOME/.bash_profile"
+    echo 'export GOPATH="$HOME/go"' >> "$HOME/.bash_profile"
+    echo 'export PATH="$GOPATH/bin:$PATH"' >> "$HOME/.bash_profile"
+  fi
+  
+  echo "Go configuration added to shell profiles"
+fi
+
+# setup Python 3.13
+echo "Setting up Python 3.13..."
+if brew list python@3.13 &>/dev/null; then
+  PYTHON_PATH="$(brew --prefix python@3.13)/bin"
+  
+  if ! grep -q "python@3.13" "$HOME/.zshrc" 2>/dev/null; then
+    echo '' >> "$HOME/.zshrc"
+    echo '# Python 3.13' >> "$HOME/.zshrc"
+    echo "export PATH=\"$(brew --prefix python@3.13)/bin:\$PATH\"" >> "$HOME/.zshrc"
+  fi
+  
+  if ! grep -q "python@3.13" "$HOME/.bash_profile" 2>/dev/null; then
+    echo '' >> "$HOME/.bash_profile"
+    echo '# Python 3.13' >> "$HOME/.bash_profile"
+    echo "export PATH=\"$(brew --prefix python@3.13)/bin:\$PATH\"" >> "$HOME/.bash_profile"
+  fi
+  
+  echo "Python 3.13 configuration added to shell profiles"
+fi
+
+# setup pnpm
+echo "Setting up pnpm..."
+if command -v pnpm &>/dev/null; then
+  if ! grep -q "PNPM_HOME" "$HOME/.zshrc" 2>/dev/null; then
+    echo '' >> "$HOME/.zshrc"
+    echo '# pnpm' >> "$HOME/.zshrc"
+    echo 'export PNPM_HOME="$HOME/Library/pnpm"' >> "$HOME/.zshrc"
+    echo 'export PATH="$PNPM_HOME:$PATH"' >> "$HOME/.zshrc"
+  fi
+  
+  if ! grep -q "PNPM_HOME" "$HOME/.bash_profile" 2>/dev/null; then
+    echo '' >> "$HOME/.bash_profile"
+    echo '# pnpm' >> "$HOME/.bash_profile"
+    echo 'export PNPM_HOME="$HOME/Library/pnpm"' >> "$HOME/.bash_profile"
+    echo 'export PATH="$PNPM_HOME:$PATH"' >> "$HOME/.bash_profile"
+  fi
+  
+  echo "pnpm configuration added to shell profiles"
+fi
+
+# setup bun
+echo "Setting up bun..."
+if command -v bun &>/dev/null; then
+  if ! grep -q "BUN_INSTALL" "$HOME/.zshrc" 2>/dev/null; then
+    echo '' >> "$HOME/.zshrc"
+    echo '# bun' >> "$HOME/.zshrc"
+    echo 'export BUN_INSTALL="$HOME/.bun"' >> "$HOME/.zshrc"
+    echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> "$HOME/.zshrc"
+  fi
+  
+  if ! grep -q "BUN_INSTALL" "$HOME/.bash_profile" 2>/dev/null; then
+    echo '' >> "$HOME/.bash_profile"
+    echo '# bun' >> "$HOME/.bash_profile"
+    echo 'export BUN_INSTALL="$HOME/.bun"' >> "$HOME/.bash_profile"
+    echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> "$HOME/.bash_profile"
+  fi
+  
+  echo "bun configuration added to shell profiles"
 fi
 
 # configure macOS
