@@ -52,7 +52,7 @@ cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
 brew "gh" # github cli
 brew "git" # version control
-brew "sdkman-cli" # java version manager
+brew "sdkman/tap/sdkman-cli" # java version manager
 
 # Languages
 brew "go"
@@ -62,7 +62,7 @@ brew "python@3.13"
 brew "nvm" # node version manager
 brew "pnpm" # efficient package manager
 brew "yarn"
-brew "bun" # all-in-one javascript runtime, bundler, package manager
+brew "oven-sh/bun/bun" # all-in-one javascript runtime, bundler, package manager
 brew "deno" # next-generation javascript runtime
 
 # Python stuff
