@@ -96,41 +96,32 @@ if [ -d "$HOME/.nvm" ]; then
   node --version
 fi
 
-# setup bun
-if command -v bun &> /dev/null; then
-  echo "Setting up Bun..."
-else
-  echo "Warning: Bun not found. It should have been installed via Brewfile."
-fi
-
 # setup sdkman
-if [ -d "$HOME/.sdkman" ]; then
-  echo "SDKMAN already initialized at $HOME/.sdkman"
-else
-  echo "Initializing SDKMAN..."
-  # sdkman-cli from brew needs to be initialized
-  if [ -s "/opt/homebrew/opt/sdkman-cli/libexec/bin/sdkman-init.sh" ]; then
-    source "/opt/homebrew/opt/sdkman-cli/libexec/bin/sdkman-init.sh"
-    
-    # add sdkman init to shell profiles
-    if ! grep -q "sdkman-init.sh" "$HOME/.zshrc" 2>/dev/null; then
-      echo '' >> "$HOME/.zshrc"
-      echo '# SDKMAN' >> "$HOME/.zshrc"
-      echo 'export SDKMAN_DIR="/opt/homebrew/opt/sdkman-cli/libexec"' >> "$HOME/.zshrc"
-      echo '[[ -s "/opt/homebrew/opt/sdkman-cli/libexec/bin/sdkman-init.sh" ]] && source "/opt/homebrew/opt/sdkman-cli/libexec/bin/sdkman-init.sh"' >> "$HOME/.zshrc"
-    fi
-    
-    if ! grep -q "sdkman-init.sh" "$HOME/.bash_profile" 2>/dev/null; then
-      echo '' >> "$HOME/.bash_profile"
-      echo '# SDKMAN' >> "$HOME/.bash_profile"
-      echo 'export SDKMAN_DIR="/opt/homebrew/opt/sdkman-cli/libexec"' >> "$HOME/.bash_profile"
-      echo '[[ -s "/opt/homebrew/opt/sdkman-cli/libexec/bin/sdkman-init.sh" ]] && source "/opt/homebrew/opt/sdkman-cli/libexec/bin/sdkman-init.sh"' >> "$HOME/.bash_profile"
-    fi
-    
-    echo "SDKMAN initialized and added to shell profiles"
-  else
-    echo "Warning: SDKMAN init script not found"
+echo "Setting up SDKMAN..."
+# sdkman-cli from brew - use brew --prefix for portability
+SDKMAN_BREW_DIR="$(brew --prefix sdkman-cli)/libexec"
+
+if [ -s "${SDKMAN_BREW_DIR}/bin/sdkman-init.sh" ]; then
+  # add sdkman init to .zshrc if not already present
+  if ! grep -q "sdkman-init.sh" "$HOME/.zshrc" 2>/dev/null; then
+    echo '' >> "$HOME/.zshrc"
+    echo '# SDKMAN' >> "$HOME/.zshrc"
+    echo 'export SDKMAN_DIR="$(brew --prefix sdkman-cli)/libexec"' >> "$HOME/.zshrc"
+    echo '[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"' >> "$HOME/.zshrc"
   fi
+  
+  # add sdkman init to .bash_profile if not already present
+  if ! grep -q "sdkman-init.sh" "$HOME/.bash_profile" 2>/dev/null; then
+    echo '' >> "$HOME/.bash_profile"
+    echo '# SDKMAN' >> "$HOME/.bash_profile"
+    echo 'export SDKMAN_DIR="$(brew --prefix sdkman-cli)/libexec"' >> "$HOME/.bash_profile"
+    echo '[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"' >> "$HOME/.bash_profile"
+  fi
+  
+  echo "SDKMAN configuration added to shell profiles"
+  echo "Open a new terminal and run 'sdk version' to verify installation"
+else
+  echo "Warning: SDKMAN init script not found at ${SDKMAN_BREW_DIR}/bin/sdkman-init.sh"
 fi
 
 # configure macOS
