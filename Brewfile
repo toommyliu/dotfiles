@@ -43,6 +43,7 @@ brew "gallery-dl" # social-media downloader
 brew "gemini-cli" # cli for Google Gemini
 
 # Dev stuff
+brew "dockutil" # manage dock items
 cask "font-cascadia-code"
 cask "font-commit-mono"
 cask "font-noto-sans-mono"
