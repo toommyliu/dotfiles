@@ -1,4 +1,5 @@
 tap "sdkman/tap"
+tap "over-sh/bun"
 
 # Apps
     # (chromium-based) browsers
@@ -60,7 +61,7 @@ brew "python@3.13"
 brew "nvm" # node version manager
 brew "pnpm" # efficient package manager
 brew "yarn"
-brew "oven-sh/bun/bun" # all-in-one javascript runtime, bundler, package manager
+brew "bun" # all-in-one javascript runtime, bundler, package manager
 brew "deno" # next-generation javascript runtime
 
 # Python stuff
