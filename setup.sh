@@ -50,6 +50,14 @@ if [ "$has_brew" -eq 0 ]; then
   brew analytics off
 fi
 
+# install packages from Brewfile
+if [ -f "$PWD/Brewfile" ]; then
+  echo "Installing packages from Brewfile..."
+  brew bundle --file="$PWD/Brewfile"
+else
+  echo "Warning: Brewfile not found at $PWD/Brewfile"
+fi
+
 # symlink dotfiles
 echo "Symlinking dotfiles..."
 ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
