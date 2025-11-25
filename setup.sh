@@ -48,6 +48,14 @@ if [ "$has_brew" -eq 0 ]; then
 
   # turn off brew analytics
   brew analytics off
+else
+  echo "Homebrew already installed at: $(which brew)"
+  # ensure brew is in PATH for current session
+  if [[ "$(sysctl -n machdep.cpu.brand_string)" == *'Apple'* ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  else
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
 fi
 
 # install packages from Brewfile
