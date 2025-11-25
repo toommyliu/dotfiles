@@ -19,4 +19,3 @@
     hard = reset --hard # git hard - uncommits, unstages, and discards changes
     nuke = !git reset --hard HEAD && git clean -fd # git nuke - uncommits, unstages, and discards changes
     cleanup = !git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n 1 git branch -d # removes local branches that are merged
-     
