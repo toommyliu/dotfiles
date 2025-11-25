@@ -112,7 +112,6 @@ fi
   dockutil --remove all --no-restart
   
   # add apps in specified order
-  dockutil --add /System/Applications/Finder.app --no-restart
   dockutil --add /System/Applications/Messages.app --no-restart
   dockutil --add /System/Applications/Mail.app --no-restart
   dockutil --add /Applications/Notion.app --no-restart
