@@ -72,30 +72,42 @@ fi
 echo "Symlinking dotfiles..."
 ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
 
-# setup nvm and install node versions
-if [ -d "$HOME/.nvm" ]; then
-  echo "Setting up NVM and installing Node.js versions..."
-  
-  if ! grep -q "nvm.sh" "$HOME/.zshrc" 2>/dev/null; then
-    echo '' >> "$HOME/.zshrc"
-    echo '# NVM' >> "$HOME/.zshrc"
-    echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/.zshrc"
-    echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm' >> "$HOME/.zshrc"
-    echo '[ -s "/opt/homebrew/opt/nvm/bash_completion" ] && \. "/opt/homebrew/opt/nvm/bash_completion"  # This loads nvm bash_completion' >> "$HOME/.zshrc"
-  fi
-  
-  if ! grep -q "nvm.sh" "$HOME/.bash_profile" 2>/dev/null; then
-    echo '' >> "$HOME/.bash_profile"
-    echo '# NVM' >> "$HOME/.bash_profile"
-    echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/.bash_profile"
-    echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm' >> "$HOME/.bash_profile"
-    echo '[ -s "/opt/homebrew/opt/nvm/bash_completion" ] && \. "/opt/homebrew/opt/nvm/bash_completion"  # This loads nvm bash_completion' >> "$HOME/.bash_profile"
-  fi
+# install nvm using official install script
+if [ ! -d "$HOME/.nvm" ]; then
+  echo "Installing NVM..."
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
   
   # load nvm for current session
   export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+else
+  echo "NVM already installed at $HOME/.nvm"
+  # load nvm for current session
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+fi
 
+# ensure nvm is in PATH configuration files (the install script should do this, but we'll verify)
+if ! grep -q "NVM_DIR" "$HOME/.zshrc" 2>/dev/null; then
+  echo '' >> "$HOME/.zshrc"
+  echo '# NVM' >> "$HOME/.zshrc"
+  echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"' >> "$HOME/.zshrc"
+  echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> "$HOME/.zshrc"
+  echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> "$HOME/.zshrc"
+fi
+
+if ! grep -q "NVM_DIR" "$HOME/.bash_profile" 2>/dev/null; then
+  echo '' >> "$HOME/.bash_profile"
+  echo '# NVM' >> "$HOME/.bash_profile"
+  echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"' >> "$HOME/.bash_profile"
+  echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> "$HOME/.bash_profile"
+  echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> "$HOME/.bash_profile"
+fi
+
+# install node versions using nvm
+if command -v nvm &>/dev/null; then
+  echo "Installing Node.js versions..."
+  
   # install latest LTS version
   echo "Installing Node.js LTS..."
   nvm install --lts
@@ -112,8 +124,8 @@ if [ -d "$HOME/.nvm" ]; then
   nvm list
   echo "Default version:"
   node --version
-  
-  echo "NVM configuration added to shell profiles"
+else
+  echo "Warning: nvm command not available. You may need to restart your terminal and re-run this script."
 fi
 
 # setup sdkman
