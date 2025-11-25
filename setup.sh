@@ -99,10 +99,34 @@ fi
 # configure macOS
   # configure macOS Dock
   echo "Configuring macOS Dock..."
+  
+  # configure dock preferences
   defaults write com.apple.dock orientation -string "left"
   defaults write com.apple.dock autohide -bool true
   defaults write com.apple.dock show-recents -bool false
-  defaults write com.apple.dock show-downloads -bool false
+  
+  # remove persistent items (Downloads, Recent Apps, etc)
+  defaults delete com.apple.dock persistent-others 2>/dev/null || true
+  
+  # clear all apps from dock to start fresh
+  dockutil --remove all --no-restart
+  
+  # add apps in specified order
+  dockutil --add /System/Applications/Finder.app --no-restart
+  dockutil --add /System/Applications/Messages.app --no-restart
+  dockutil --add /System/Applications/Mail.app --no-restart
+  dockutil --add /Applications/Notion.app --no-restart
+  dockutil --add /System/Applications/Notes.app --no-restart
+  dockutil --add /Applications/Todoist.app --no-restart
+  dockutil --add /Applications/Helium.app --no-restart
+  dockutil --add /Applications/Discord.app --no-restart
+  dockutil --add /Applications/Spotify.app --no-restart
+  dockutil --add "/Applications/Visual Studio Code.app" --no-restart
+  dockutil --add /Applications/Zed.app --no-restart
+  dockutil --add /Applications/Ghostty.app --no-restart
+  dockutil --add "/Applications/Sublime Merge.app"
+  
+  # restart dock to apply all changes
   killall Dock
 
 echo "Setup complete!"
