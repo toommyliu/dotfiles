@@ -1,5 +1,5 @@
 tap "sdkman/tap"
-tap "over-sh/bun"
+tap "oven-sh/bun"
 
 # Apps
     # (chromium-based) browsers
