@@ -25,8 +25,13 @@ else
 fi
 
 # install homebrew
-command -v brew >/dev/null 2>&1; has_brew=1 || { has_brew=0; }
-if [ "$has_brew" -eq 0 ]; then
+if [[ "$(sysctl -n machdep.cpu.brand_string)" == *'Apple'* ]]; then
+  BREW_PATH="/opt/homebrew/bin/brew"
+else
+  BREW_PATH="/usr/local/bin/brew"
+fi
+
+if [ ! -f "$BREW_PATH" ]; then
   echo "Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -49,14 +54,11 @@ if [ "$has_brew" -eq 0 ]; then
   # turn off brew analytics
   brew analytics off
 else
-  echo "Homebrew already installed at: $(which brew)"
-  # ensure brew is in PATH for current session
-  if [[ "$(sysctl -n machdep.cpu.brand_string)" == *'Apple'* ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  else
-    eval "$(/usr/local/bin/brew shellenv)"
-  fi
+  echo "Homebrew already installed at: $BREW_PATH"
 fi
+
+# ensure brew is in PATH for current session
+eval "$($BREW_PATH shellenv)"
 
 # install packages from Brewfile
 if [ -f "$PWD/Brewfile" ]; then
