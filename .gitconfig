@@ -14,8 +14,8 @@
     pforce = push --force # git pforce
     f = fetch # git f
     fp = fetch --prune # git fp
-    soft = reset --soft # git soft - uncommits but keeps changes staged
-    mixed = reset --mixed # git mixed - uncommits and unstages changes
-    hard = reset --hard # git hard - uncommits, unstages, and discards changes
+    soft = "!f() { git reset --soft HEAD~${1:-1}; }; f" # git soft <n> - uncommits but keeps changes staged
+    mixed = "!f() { git reset --mixed HEAD~${1:-1}; }; f" # git mixed <n> - uncommits and unstages changes
+    hard = "!f() { git reset --hard HEAD~${1:-1}; }; f" # git hard <n> - uncommits, unstages, and discards changes
     nuke = !git reset --hard HEAD && git clean -fd # git nuke - uncommits, unstages, and discards changes
     cleanup = !git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n 1 git branch -d # removes local branches that are merged
