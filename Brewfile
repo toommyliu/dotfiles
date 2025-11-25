@@ -59,7 +59,6 @@ brew "go"
 brew "python@3.13"
 
 # Javscript stuff
-brew "nvm" # node version manager
 brew "pnpm" # efficient package manager
 brew "yarn"
 brew "oven-sh/bun/bun" # all-in-one javascript runtime, bundler, package manager
