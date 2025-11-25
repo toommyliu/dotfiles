@@ -95,3 +95,13 @@ if [ -d "$HOME/.nvm" ]; then
   echo "Default version:"
   node --version
 fi
+
+# configure macOS
+  # configure macOS Dock
+  echo "Configuring macOS Dock..."
+  defaults write com.apple.dock orientation -string "left"
+  defaults write com.apple.dock autohide -bool true
+  defaults write com.apple.dock show-recents -bool false
+  killall Dock
+
+echo "Setup complete!"
