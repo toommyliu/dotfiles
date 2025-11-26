@@ -2,13 +2,10 @@
 
 echo "Starting setup..."
 
-# install rosetta on apple silicon
-if [[ "$(sysctl -n machdep.cpu.brand_string)" == *'Apple'* ]]; then
-	if [ ! -d "/usr/libexec/rosetta" ]; then
-		echo "Installing Rosetta..."
-		sudo softwareupdate --install-rosetta --agree-to-license
-	fi
-
+# install rosetta 2
+if [ ! -d "/usr/libexec/rosetta" ]; then
+	echo "Installing Rosetta..."
+	sudo softwareupdate --install-rosetta --agree-to-license
 	# verify install
 	sudo softwareupdate --history
 fi
@@ -25,31 +22,15 @@ else
 fi
 
 # install homebrew
-if [[ "$(sysctl -n machdep.cpu.brand_string)" == *'Apple'* ]]; then
-  BREW_PATH="/opt/homebrew/bin/brew"
-else
-  BREW_PATH="/usr/local/bin/brew"
-fi
+BREW_PATH="/opt/homebrew/bin/brew"
 
 if [ ! -f "$BREW_PATH" ]; then
   echo "Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-  # add 'brew --prefix' location to $PATH
-  # https://applehelpwriter.com/2018/03/21/how-homebrew-invites-users-to-get-pwned/
-  # https://www.n00py.io/2016/10/privilege-escalation-on-os-x-without-exploits/
-  if [[ "$(sysctl -n machdep.cpu.brand_string)" == *'Apple'* ]]; then
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/${USER}/.zprofile
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/${USER}/.bash_profile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-
-    #echo 'export PATH=/opt/homebrew/bin:$PATH' >> /Users/${USER}/.bash_profile
-    #echo 'export PATH=/opt/homebrew/sbin:$PATH' >> /Users/${USER}/.bash_profile
-  else
-    echo 'export PATH="/usr/local/sbin:$PATH"' >> /Users/${USER}/.bash_profile
-  fi
-
-  source /Users/${USER}/.bash_profile
+  # add homebrew to PATH
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/${USER}/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 
   # turn off brew analytics
   brew analytics off
@@ -71,6 +52,7 @@ fi
 # symlink dotfiles
 echo "Symlinking dotfiles..."
 ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
+ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
 
 # install nvm using official install script
 if [ ! -d "$HOME/.nvm" ]; then
@@ -88,20 +70,12 @@ else
 fi
 
 # ensure nvm is in PATH configuration files (the install script should do this, but we'll verify)
-if ! grep -q "NVM_DIR" "$HOME/.zshrc" 2>/dev/null; then
-  echo '' >> "$HOME/.zshrc"
-  echo '# NVM' >> "$HOME/.zshrc"
-  echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"' >> "$HOME/.zshrc"
-  echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> "$HOME/.zshrc"
-  echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> "$HOME/.zshrc"
-fi
-
-if ! grep -q "NVM_DIR" "$HOME/.bash_profile" 2>/dev/null; then
-  echo '' >> "$HOME/.bash_profile"
-  echo '# NVM' >> "$HOME/.bash_profile"
-  echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"' >> "$HOME/.bash_profile"
-  echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> "$HOME/.bash_profile"
-  echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> "$HOME/.bash_profile"
+if ! grep -q "NVM_DIR" "$PWD/.zshrc" 2>/dev/null; then
+  echo '' >> "$PWD/.zshrc"
+  echo '# NVM' >> "$PWD/.zshrc"
+  echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"' >> "$PWD/.zshrc"
+  echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> "$PWD/.zshrc"
+  echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> "$PWD/.zshrc"
 fi
 
 # install node versions using nvm
@@ -133,18 +107,11 @@ echo "Setting up SDKMAN..."
 SDKMAN_BREW_DIR="$(brew --prefix sdkman-cli)/libexec"
 
 if [ -s "${SDKMAN_BREW_DIR}/bin/sdkman-init.sh" ]; then
-  if ! grep -q "sdkman-init.sh" "$HOME/.zshrc" 2>/dev/null; then
-    echo '' >> "$HOME/.zshrc"
-    echo '# SDKMAN' >> "$HOME/.zshrc"
-    echo 'export SDKMAN_DIR="$(brew --prefix sdkman-cli)/libexec"' >> "$HOME/.zshrc"
-    echo '[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"' >> "$HOME/.zshrc"
-  fi
-  
-  if ! grep -q "sdkman-init.sh" "$HOME/.bash_profile" 2>/dev/null; then
-    echo '' >> "$HOME/.bash_profile"
-    echo '# SDKMAN' >> "$HOME/.bash_profile"
-    echo 'export SDKMAN_DIR="$(brew --prefix sdkman-cli)/libexec"' >> "$HOME/.bash_profile"
-    echo '[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"' >> "$HOME/.bash_profile"
+  if ! grep -q "sdkman-init.sh" "$PWD/.zshrc" 2>/dev/null; then
+    echo '' >> "$PWD/.zshrc"
+    echo '# SDKMAN' >> "$PWD/.zshrc"
+    echo 'export SDKMAN_DIR="$(brew --prefix sdkman-cli)/libexec"' >> "$PWD/.zshrc"
+    echo '[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"' >> "$PWD/.zshrc"
   fi
   
   echo "SDKMAN configuration added to shell profiles"
@@ -156,18 +123,11 @@ fi
 # setup Go
 echo "Setting up Go..."
 if command -v go &>/dev/null; then
-  if ! grep -q "GOPATH" "$HOME/.zshrc" 2>/dev/null; then
-    echo '' >> "$HOME/.zshrc"
-    echo '# Go' >> "$HOME/.zshrc"
-    echo 'export GOPATH="$HOME/go"' >> "$HOME/.zshrc"
-    echo 'export PATH="$GOPATH/bin:$PATH"' >> "$HOME/.zshrc"
-  fi
-  
-  if ! grep -q "GOPATH" "$HOME/.bash_profile" 2>/dev/null; then
-    echo '' >> "$HOME/.bash_profile"
-    echo '# Go' >> "$HOME/.bash_profile"
-    echo 'export GOPATH="$HOME/go"' >> "$HOME/.bash_profile"
-    echo 'export PATH="$GOPATH/bin:$PATH"' >> "$HOME/.bash_profile"
+  if ! grep -q "GOPATH" "$PWD/.zshrc" 2>/dev/null; then
+    echo '' >> "$PWD/.zshrc"
+    echo '# Go' >> "$PWD/.zshrc"
+    echo 'export GOPATH="$HOME/go"' >> "$PWD/.zshrc"
+    echo 'export PATH="$GOPATH/bin:$PATH"' >> "$PWD/.zshrc"
   fi
   
   echo "Go configuration added to shell profiles"
@@ -178,16 +138,10 @@ echo "Setting up Python 3.13..."
 if brew list python@3.13 &>/dev/null; then
   PYTHON_PATH="$(brew --prefix python@3.13)/bin"
   
-  if ! grep -q "python@3.13" "$HOME/.zshrc" 2>/dev/null; then
-    echo '' >> "$HOME/.zshrc"
-    echo '# Python 3.13' >> "$HOME/.zshrc"
-    echo "export PATH=\"$(brew --prefix python@3.13)/bin:\$PATH\"" >> "$HOME/.zshrc"
-  fi
-  
-  if ! grep -q "python@3.13" "$HOME/.bash_profile" 2>/dev/null; then
-    echo '' >> "$HOME/.bash_profile"
-    echo '# Python 3.13' >> "$HOME/.bash_profile"
-    echo "export PATH=\"$(brew --prefix python@3.13)/bin:\$PATH\"" >> "$HOME/.bash_profile"
+  if ! grep -q "python@3.13" "$PWD/.zshrc" 2>/dev/null; then
+    echo '' >> "$PWD/.zshrc"
+    echo '# Python 3.13' >> "$PWD/.zshrc"
+    echo "export PATH=\"$(brew --prefix python@3.13)/bin:\$PATH\"" >> "$PWD/.zshrc"
   fi
   
   echo "Python 3.13 configuration added to shell profiles"
@@ -196,18 +150,11 @@ fi
 # setup pnpm
 echo "Setting up pnpm..."
 if command -v pnpm &>/dev/null; then
-  if ! grep -q "PNPM_HOME" "$HOME/.zshrc" 2>/dev/null; then
-    echo '' >> "$HOME/.zshrc"
-    echo '# pnpm' >> "$HOME/.zshrc"
-    echo 'export PNPM_HOME="$HOME/Library/pnpm"' >> "$HOME/.zshrc"
-    echo 'export PATH="$PNPM_HOME:$PATH"' >> "$HOME/.zshrc"
-  fi
-  
-  if ! grep -q "PNPM_HOME" "$HOME/.bash_profile" 2>/dev/null; then
-    echo '' >> "$HOME/.bash_profile"
-    echo '# pnpm' >> "$HOME/.bash_profile"
-    echo 'export PNPM_HOME="$HOME/Library/pnpm"' >> "$HOME/.bash_profile"
-    echo 'export PATH="$PNPM_HOME:$PATH"' >> "$HOME/.bash_profile"
+  if ! grep -q "PNPM_HOME" "$PWD/.zshrc" 2>/dev/null; then
+    echo '' >> "$PWD/.zshrc"
+    echo '# pnpm' >> "$PWD/.zshrc"
+    echo 'export PNPM_HOME="$HOME/Library/pnpm"' >> "$PWD/.zshrc"
+    echo 'export PATH="$PNPM_HOME:$PATH"' >> "$PWD/.zshrc"
   fi
   
   echo "pnpm configuration added to shell profiles"
@@ -216,18 +163,11 @@ fi
 # setup bun
 echo "Setting up bun..."
 if command -v bun &>/dev/null; then
-  if ! grep -q "BUN_INSTALL" "$HOME/.zshrc" 2>/dev/null; then
-    echo '' >> "$HOME/.zshrc"
-    echo '# bun' >> "$HOME/.zshrc"
-    echo 'export BUN_INSTALL="$HOME/.bun"' >> "$HOME/.zshrc"
-    echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> "$HOME/.zshrc"
-  fi
-  
-  if ! grep -q "BUN_INSTALL" "$HOME/.bash_profile" 2>/dev/null; then
-    echo '' >> "$HOME/.bash_profile"
-    echo '# bun' >> "$HOME/.bash_profile"
-    echo 'export BUN_INSTALL="$HOME/.bun"' >> "$HOME/.bash_profile"
-    echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> "$HOME/.bash_profile"
+  if ! grep -q "BUN_INSTALL" "$PWD/.zshrc" 2>/dev/null; then
+    echo '' >> "$PWD/.zshrc"
+    echo '# bun' >> "$PWD/.zshrc"
+    echo 'export BUN_INSTALL="$HOME/.bun"' >> "$PWD/.zshrc"
+    echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> "$PWD/.zshrc"
   fi
   
   echo "bun configuration added to shell profiles"
@@ -249,6 +189,7 @@ fi
   dockutil --remove all --no-restart
   
   # add apps in specified order
+  # finder would be here
   dockutil --add /System/Applications/Messages.app --no-restart
   dockutil --add /System/Applications/Mail.app --no-restart
   dockutil --add /Applications/Notion.app --no-restart
