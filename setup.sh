@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 echo "Starting setup..."
 
@@ -174,6 +175,12 @@ if command -v bun &>/dev/null; then
 fi
 
 # configure macOS
+  # configure macOS Finder
+  echo "Configuring macOS Finder..."
+  defaults write com.apple.finder ShowPathbar -bool true  # Show path bar in Finder
+  defaults write com.apple.finder ShowStatusBar -bool true  # Show status bar in Finder
+  defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false  # Disable extension change warning
+
   # configure macOS Dock
   echo "Configuring macOS Dock..."
   
@@ -203,7 +210,8 @@ fi
   dockutil --add /Applications/Ghostty.app --no-restart
   dockutil --add "/Applications/Sublime Merge.app"
   
-  # restart dock to apply all changes
+  # restart apps to apply all changes
   killall Dock
+  killall Finder
 
 echo "Setup complete!"
