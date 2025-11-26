@@ -21,7 +21,7 @@ else
 fi
 
 eval "$(ssh-agent -s)"
-ssh-add -K "$KEY_FILE" 2>/dev/null || ssh-add "$KEY_FILE"
+ssh-add --apple-use-keychain "$KEY_FILE" 2>/dev/null || ssh-add "$KEY_FILE"
 
 CONFIG_BLOCK="
 Host github.com
