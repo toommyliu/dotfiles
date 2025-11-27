@@ -7,6 +7,8 @@ tap "oven-sh/bun"
     cask "helium-browser"
     cask "google-chrome"
     cask "brave-browser"
+
+    # (gecko-based) browsers
     cask "zen"
 
     # productivity
