@@ -6,6 +6,8 @@ tap "oven-sh/bun"
     cask "arc"
     cask "helium-browser"
     cask "google-chrome"
+    cask "brave-browser"
+    cask "zen"
 
     # productivity
     cask "spotify" # audio client
