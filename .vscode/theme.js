@@ -140,12 +140,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 				}
 			}
 		}
-        });
-    });
+	});
 
     const rightItems = document.querySelector(".right-items");
     if (rightItems) {
-        console.log('attached');
         observer.observe(rightItems, { childList: true, subtree: true });
         const existing = document.getElementById("be5invis.vscode-custom-css");
         existing?.remove();
