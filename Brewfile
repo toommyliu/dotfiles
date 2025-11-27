@@ -3,7 +3,7 @@ tap "oven-sh/bun"
 
 # Apps
     # (chromium-based) browsers
-    cask "arc" 
+    cask "arc"
     cask "helium-browser"
     cask "google-chrome"
 
@@ -24,7 +24,9 @@ tap "oven-sh/bun"
     cask "stats" # menubar resource monitor
     cask "onyx" # system utilities & maintenance
     cask "omnidisksweeper" # disk maintenance
-    cask "bitwarden" # password manager
+
+    brew "mas" # Mac App Store CLI
+    mas "Bitwarden", id: 1352778147 # used mas version for Browser Integration
 
     # dev apps
     cask "ghostty" # terminal emulator
