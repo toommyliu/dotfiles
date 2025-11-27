@@ -163,7 +163,7 @@ a.action-label {
 }
 
 .monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab .tab-label {
-  font-family: "JetBrainsMono Nerd Font" !important;
+  /* font-family: "JetBrainsMono Nerd Font" !important; */
   font-size: 12px !important;
   padding: 0 2px !important;
   display: flex !important;
