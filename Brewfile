@@ -28,6 +28,7 @@ tap "oven-sh/bun"
     cask "stats" # menubar resource monitor
     cask "onyx" # system utilities & maintenance
     cask "omnidisksweeper" # disk maintenance
+    cask "keyboardcleantool" # disables keyboard to clean
 
     brew "mas" # Mac App Store CLI
     mas "Bitwarden", id: 1352778147 # used mas version for Browser Integration
