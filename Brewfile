@@ -33,6 +33,8 @@ tap "oven-sh/bun"
     brew "mas" # Mac App Store CLI
     mas "Bitwarden", id: 1352778147 # used mas version for Browser Integration
 
+    brew "ente-auth" # 2fa
+
     # dev apps
     cask "ghostty" # terminal emulator
     cask "sublime-merge" # git source control app
