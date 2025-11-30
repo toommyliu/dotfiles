@@ -31,7 +31,7 @@ tap "oven-sh/bun"
     cask "keyboardcleantool" # disables keyboard to clean
 
     brew "mas" # Mac App Store CLI
-    if ENV['INSTALL_BITWARDEN'] != 'false'
+    if ENV['INSTALL_BITWARDEN']
       mas "Bitwarden", id: 1352778147 # used mas version for Browser Integration
     end
 
