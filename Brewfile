@@ -35,7 +35,7 @@ tap "oven-sh/bun"
       mas "Bitwarden", id: 1352778147 # used mas version for Browser Integration
     end
 
-    brew "ente-auth" # 2fa
+    cask "ente-auth" # 2fa
 
     # dev apps
     cask "ghostty" # terminal emulator
