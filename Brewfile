@@ -21,7 +21,9 @@ tap "oven-sh/bun"
     cask "todoist-app" # task management
 
     # communication
-    cask "zoom"
+    if ENV['INSTALL_ZOOM']
+      cask "zoom"
+    end
     cask "discord"
 
     # utilities
