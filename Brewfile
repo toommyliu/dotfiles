@@ -21,9 +21,7 @@ tap "oven-sh/bun"
     cask "todoist-app" # task management
 
     # communication
-    if ENV['INSTALL_ZOOM']
-      cask "zoom"
-    end
+    cask "zoom" if ENV['INSTALL_ZOOM']
     cask "discord"
 
     # utilities
@@ -32,9 +30,13 @@ tap "oven-sh/bun"
     cask "omnidisksweeper" # disk maintenance
     cask "keyboardcleantool" # disables keyboard to clean
 
-    brew "mas" # Mac App Store CLI
     if ENV['INSTALL_BITWARDEN']
-      mas "Bitwarden", id: 1352778147 # used mas version for Browser Integration
+      if OS.mac?
+        brew "mas" # Mac App Store CLI
+        mas "Bitwarden", id: 1352778147 # MAS version for browser integration
+      else
+        cask "bitwarden"
+      end
     end
 
     cask "ente-auth" # 2fa
