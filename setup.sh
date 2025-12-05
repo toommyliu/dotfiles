@@ -1,6 +1,29 @@
 #!/bin/bash
 set -e
 
+export INSTALL_BITWARDEN=""
+export INSTALL_ZOOM=""
+
+for arg in "$@"; do
+  case $arg in
+    --bitwarden)
+      INSTALL_BITWARDEN=1
+      ;;
+    --zoom)
+      INSTALL_ZOOM=1
+      ;;
+    --help|-h)
+      echo "Usage: ./setup.sh [OPTIONS]"
+      echo ""
+      echo "Options:"
+      echo "  --bitwarden    Install Bitwarden from Mac App Store (for macOS only)"
+      echo "  --zoom         Install Zoom"
+      echo "  --help, -h     Show this help message"
+      exit 0
+      ;;
+  esac
+done
+
 echo "Starting setup..."
 
 # install rosetta 2
