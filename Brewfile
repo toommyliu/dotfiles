@@ -45,6 +45,7 @@ tap "oven-sh/bun"
     cask "ghostty" # terminal emulator
     cask "sublime-merge" # git source control app
     cask "visual-studio-code" # code editor
+    cask "antigravity" # code editor
     cask "zed" # code editor
     cask "intellij-idea" # java IDE
     cask "jetbrains-toolbox" # manage JetBrains IDEs
