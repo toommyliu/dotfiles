@@ -57,4 +57,13 @@ echo "Configuring dock..."
 killall Dock
 killall Finder
 
-echo "Setup complete!"
+#!/bin/bash
+
+read -p "restart? [y/N]: " answer
+
+answer=${answer,,}
+if [[ "$answer" == "y" || "$answer" == "yes" ]]; then
+    sudo shutdown -r now
+else
+    echo "Setup complete!"
+fi
