@@ -8,7 +8,8 @@ set -e
 echo "Configuring trackpad..."
 
   # tap to click
-  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+  defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+  sudo defaults write /Library/Preferences/.GlobalPreferences com.apple.mouse.tapBehavior -int 1 # update System Settings
   defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 
 # configure finder
