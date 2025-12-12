@@ -26,9 +26,6 @@ echo "Configuring dock..."
   defaults write com.apple.dock autohide-delay -float 0.1 # time to trigger
   defaults write com.apple.dock autohide-time-modifier -float 0.25 # open/close animation time
 
-defaults delete com.apple.dock autohide-delay; defaults delete com.apple.dock autohide-time-modifier; killall Dock
-
-
   # remove persistent items (Downloads, Recent Apps, etc)
   defaults delete com.apple.dock persistent-others 2>/dev/null || true
 
