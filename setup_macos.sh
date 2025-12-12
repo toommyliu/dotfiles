@@ -4,6 +4,10 @@ set -e
 
 # https://macos-defaults.com/dock/autohide-time-modifier.html
 
+# disable the startup sound
+echo "Disabling startup sound..."
+sudo nvram StartupMute=%01
+
 # configure trackpad
 echo "Configuring trackpad..."
 
