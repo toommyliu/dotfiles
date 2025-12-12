@@ -3,7 +3,6 @@ tap "oven-sh/bun"
 
 # Apps
     # (chromium-based) browsers
-    cask "arc"
     cask "helium-browser"
     cask "google-chrome"
     cask "brave-browser"
