@@ -39,6 +39,7 @@ echo "Configuring dock..."
     dockutil --add /Applications/Discord.app --no-restart
     dockutil --add /Applications/Spotify.app --no-restart
     dockutil --add "/Applications/Visual Studio Code.app" --no-restart
+    dockutil --add /Applications/Antigravity.app --no-restart
     dockutil --add /Applications/Zed.app --no-restart
     dockutil --add /Applications/Ghostty.app --no-restart
     dockutil --add "/Applications/Sublime Merge.app" --no-restart
