@@ -57,8 +57,6 @@ echo "Configuring dock..."
 killall Dock
 killall Finder
 
-#!/bin/bash
-
 read -p "restart? [y/N]: " answer
 
 answer=${answer,,}
