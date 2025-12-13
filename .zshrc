@@ -27,3 +27,6 @@ export PNPM_HOME="$HOME/Library/pnpm"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 [[ -d "$BUN_INSTALL" ]] && export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/tommyliu/.antigravity/antigravity/bin:$PATH"
