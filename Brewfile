@@ -28,6 +28,7 @@ tap "oven-sh/bun"
     cask "onyx" # system utilities & maintenance
     cask "omnidisksweeper" # disk maintenance
     cask "keyboardcleantool" # disables keyboard to clean
+    cask "pearcleaner" # app uninstaller
 
     if ENV['HOMEBREW_BUNDLE_INSTALL_BITWARDEN']
       if OS.mac?
