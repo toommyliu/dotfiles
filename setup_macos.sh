@@ -59,7 +59,7 @@ killall Finder
 
 read -p "restart? [y/N]: " answer
 
-answer=${answer,,}
+answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
 if [[ "$answer" == "y" || "$answer" == "yes" ]]; then
     sudo shutdown -r now
 else
