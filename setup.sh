@@ -1,16 +1,16 @@
 #!/bin/bash
 set -e
 
-export INSTALL_BITWARDEN=""
-export INSTALL_ZOOM=""
+HOMEBREW_BUNDLE_INSTALL_BITWARDEN=""
+HOMEBREW_BUNDLE_INSTALL_ZOOM=""
 
 for arg in "$@"; do
   case $arg in
     --bitwarden)
-      INSTALL_BITWARDEN=1
+      HOMEBREW_BUNDLE_INSTALL_BITWARDEN=1
       ;;
     --zoom)
-      INSTALL_ZOOM=1
+      HOMEBREW_BUNDLE_INSTALL_ZOOM=1
       ;;
     --help|-h)
       echo "Usage: ./setup.sh [OPTIONS]"
@@ -65,6 +65,8 @@ eval "$($BREW_PATH shellenv)"
 # install packages from Brewfile
 if [ -f "$PWD/Brewfile" ]; then
   echo "Installing packages from Brewfile..."
+  export HOMEBREW_BUNDLE_INSTALL_BITWARDEN
+  export HOMEBREW_BUNDLE_INSTALL_ZOOM
   brew bundle --file="$PWD/Brewfile"
 else
   echo "Warning: Brewfile not found at $PWD/Brewfile"
