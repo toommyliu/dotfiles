@@ -21,7 +21,8 @@ tap "oven-sh/bun"
 
     # communication
     cask "zoom" if ENV['HOMEBREW_BUNDLE_INSTALL_ZOOM']
-    cask "discord"
+    # cask "discord"
+    cask "legcord" # custom discord client - has a menubar icon
 
     # utilities
     cask "stats" # menubar resource monitor
