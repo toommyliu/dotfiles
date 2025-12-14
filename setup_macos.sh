@@ -49,7 +49,8 @@ echo "Configuring dock..."
     dockutil --add /System/Applications/Notes.app --no-restart
     dockutil --add /Applications/Todoist.app --no-restart
     dockutil --add /Applications/Helium.app --no-restart
-    dockutil --add /Applications/Discord.app --no-restart
+    # dockutil --add /Applications/Discord.app --no-restart
+    dockutil --add /Applications/Legcord.app --no-restart
     dockutil --add /Applications/Spotify.app --no-restart
     dockutil --add "/Applications/Visual Studio Code.app" --no-restart
     dockutil --add /Applications/Antigravity.app --no-restart
