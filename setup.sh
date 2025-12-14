@@ -77,6 +77,14 @@ echo "Symlinking dotfiles..."
 ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
 
+# install oh-my-zsh
+echo "Installing oh-my-zsh..."
+if [ -d "$HOME/.oh-my-zsh" ]; then
+  echo "oh-my-zsh already installed, skipping..."
+else
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
+
 # install nvm
 if [ ! -d "$HOME/.nvm" ]; then
   echo "Installing NVM..."
