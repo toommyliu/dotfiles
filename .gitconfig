@@ -2,20 +2,20 @@
     name = toommyliu
     email = 86510873+toommyliu@users.noreply.github.com
 
-[alias]
-    co = checkout # git co
-    br = branch # git br
-    st = status # git st
-    sw = switch # git sw
-    a = add # git a
-    aa = add --all # git aa
-    p = push # git p
-    pu = pull # git pu
-    pforce = push --force # git pforce
-    f = fetch # git f
-    fp = fetch --prune # git fp
-    soft = "!f() { git reset --soft HEAD~${1:-1}; }; f" # git soft <n> - uncommits but keeps changes staged
-    mixed = "!f() { git reset --mixed HEAD~${1:-1}; }; f" # git mixed <n> - uncommits and unstages changes
-    hard = "!f() { git reset --hard HEAD~${1:-1}; }; f" # git hard <n> - uncommits, unstages, and discards changes
-    nuke = !git reset --hard HEAD && git clean -fd # git nuke - uncommits, unstages, and discards changes
-    cleanup = !git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n 1 git branch -d # removes local branches that are merged
+# [alias]
+#     co = checkout # git co
+#     br = branch # git br
+#     st = status # git st
+#     sw = switch # git sw
+#     a = add # git a
+#     aa = add --all # git aa
+#     p = push # git p
+#     pu = pull # git pu
+#     pforce = push --force # git pforce
+#     f = fetch # git f
+#     fp = fetch --prune # git fp
+#     soft = "!f() { git reset --soft HEAD~${1:-1}; }; f" # git soft <n> - uncommits but keeps changes staged
+#     mixed = "!f() { git reset --mixed HEAD~${1:-1}; }; f" # git mixed <n> - uncommits and unstages changes
+#     hard = "!f() { git reset --hard HEAD~${1:-1}; }; f" # git hard <n> - uncommits, unstages, and discards changes
+#     nuke = !git reset --hard HEAD && git clean -fd # git nuke - uncommits, unstages, and discards changes
+#     cleanup = !git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n 1 git branch -d # removes local branches that are merged
