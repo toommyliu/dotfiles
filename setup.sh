@@ -108,4 +108,12 @@ else
   echo "Warning: nvm command not available. Restart your terminal and re-run this script."
 fi
 
+# install rust
+if [ ! -d "$HOME/.cargo" ]; then
+  echo "Installing Rust..."
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 
+else
+  echo "Rust already installed, skipping..."
+fi
+
 echo "Setup complete!"
