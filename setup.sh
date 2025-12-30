@@ -82,6 +82,11 @@ echo "Symlinking Ghostty config..."
 mkdir -p "$HOME/.config/ghostty"
 ln -sf "$PWD/.config/ghostty/config" "$HOME/.config/ghostty/config"
 
+# symlink karabiner config
+echo "Symlinking Karabiner config..."
+mkdir -p "$HOME/.config/karabiner"
+ln -sf "$PWD/.config/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+
 # install oh-my-zsh
 echo "Installing oh-my-zsh..."
 if [ -d "$HOME/.oh-my-zsh" ]; then
