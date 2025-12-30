@@ -77,6 +77,11 @@ echo "Symlinking dotfiles..."
 ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
 
+# symlink ghostty config
+echo "Symlinking Ghostty config..."
+mkdir -p "$HOME/.config/ghostty"
+ln -sf "$PWD/.config/ghostty/config" "$HOME/.config/ghostty/config"
+
 # install oh-my-zsh
 echo "Installing oh-my-zsh..."
 if [ -d "$HOME/.oh-my-zsh" ]; then
@@ -111,7 +116,7 @@ fi
 # install rust
 if [ ! -d "$HOME/.cargo" ]; then
   echo "Installing Rust..."
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 else
   echo "Rust already installed, skipping..."
 fi
