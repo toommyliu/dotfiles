@@ -32,6 +32,7 @@ tap "oven-sh/bun"
     cask "pearcleaner" # app uninstaller
     cask "jordanbaird-ice" # menubar management
     cask "karabiner-elements" # keyboard remapping for hyperkey
+    cask "cloudflare-warp"
 
     if ENV['HOMEBREW_BUNDLE_INSTALL_BITWARDEN']
       if OS.mac?
