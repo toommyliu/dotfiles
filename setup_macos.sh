@@ -25,6 +25,7 @@ echo "Configuring trackpad..."
 echo "Configuring finder..."
   defaults write com.apple.finder ShowPathbar -bool true  # Show path bar in Finder
   defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false  # Disable extension change warning
+  defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv" # Default to List view
 
 # configure dock
 echo "Configuring dock..."
