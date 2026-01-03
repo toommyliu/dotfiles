@@ -13,6 +13,7 @@ tap "oven-sh/bun"
     # productivity
     cask "spotify" # audio client
     cask "notion" # productivity workspace
+    cask "obsidian" # note-taking
     cask "notion-calendar" # elegant calendar
     cask "raycast" # supercharged command launcher
     cask "rectangle" # window management
