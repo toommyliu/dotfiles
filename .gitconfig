@@ -2,6 +2,9 @@
     name = toommyliu
     email = 86510873+toommyliu@users.noreply.github.com
 
+[init]
+    defaultBranch = main
+
 # [alias]
 #     co = checkout # git co
 #     br = branch # git br
@@ -19,3 +22,10 @@
 #     hard = "!f() { git reset --hard HEAD~${1:-1}; }; f" # git hard <n> - uncommits, unstages, and discards changes
 #     nuke = !git reset --hard HEAD && git clean -fd # git nuke - uncommits, unstages, and discards changes
 #     cleanup = !git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n 1 git branch -d # removes local branches that are merged
+
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
