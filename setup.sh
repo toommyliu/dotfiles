@@ -72,11 +72,6 @@ else
   echo "Warning: Brewfile not found at $PWD/Brewfile"
 fi
 
-# symlink dotfiles
-echo "Symlinking dotfiles..."
-ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
-ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
-
 # symlink ghostty config
 echo "Symlinking Ghostty config..."
 mkdir -p "$HOME/.config/ghostty"
@@ -132,5 +127,10 @@ if [ ! -d "$HOME/.cargo" ]; then
 else
   echo "Rust already installed, skipping..."
 fi
+
+# symlink dotfiles
+echo "Symlinking dotfiles..."
+ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
+ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
 
 echo "Setup complete!"
