@@ -72,15 +72,18 @@ else
   echo "Warning: Brewfile not found at $PWD/Brewfile"
 fi
 
-# symlink ghostty config
+# symlink ghostty config1
 echo "Symlinking Ghostty config..."
 mkdir -p "$HOME/.config/ghostty"
 ln -sf "$PWD/.config/ghostty/config" "$HOME/.config/ghostty/config"
 
-# symlink karabiner config
-echo "Symlinking Karabiner config..."
+echo "Copying Karabiner config..."
 mkdir -p "$HOME/.config/karabiner"
-ln -sf "$PWD/.config/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+cp "$PWD/.config/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+ln -sf "$PWD/.config/karabiner/karabiner.edn" "$HOME/.config/karabiner/karabiner.edn"
+
+echo "Generating Karabiner config..."
+GOKU_EDN_CONFIG_FILE="$HOME/.config/karabiner/karabiner.edn" goku
 
 # symlink vscode-settings
 echo "Symlinking VS Code settings..."

@@ -1,5 +1,6 @@
 tap "sdkman/tap"
 tap "oven-sh/bun"
+tap "yqrashawn/goku"
 
 # Apps
     # (chromium-based) browsers
@@ -33,6 +34,7 @@ tap "oven-sh/bun"
     cask "pearcleaner" # app uninstaller
     cask "jordanbaird-ice" # menubar management
     cask "karabiner-elements" # keyboard remapping for hyperkey
+    brew "yqrashawn/goku/goku" # karabiner config tool
     cask "cloudflare-warp"
 
     if ENV['HOMEBREW_BUNDLE_INSTALL_BITWARDEN']
