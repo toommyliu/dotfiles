@@ -72,7 +72,7 @@ else
   echo "Warning: Brewfile not found at $PWD/Brewfile"
 fi
 
-# symlink ghostty config1
+# symlink ghostty config
 echo "Symlinking Ghostty config..."
 mkdir -p "$HOME/.config/ghostty"
 ln -sf "$PWD/.config/ghostty/config" "$HOME/.config/ghostty/config"
