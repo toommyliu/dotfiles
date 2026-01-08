@@ -54,6 +54,7 @@ tap "oven-sh/bun"
     cask "zed" # code editor
     cask "intellij-idea" # java IDE
     cask "jetbrains-toolbox" # manage JetBrains IDEs
+    cask "yaak"
 
 # Media stuff
 brew "yt-dlp" # youtube downloader
