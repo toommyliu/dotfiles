@@ -1,90 +1,70 @@
 tap "sdkman/tap"
 tap "oven-sh/bun"
 
-# Apps
-    # (chromium-based) browsers
-    cask "helium-browser"
-    cask "google-chrome"
-    cask "brave-browser"
+cask "helium-browser"
+cask "google-chrome"
+cask "brave-browser"
 
-    # (gecko-based) browsers
-    cask "zen"
+cask "zen"
 
-    # productivity
-    cask "spotify" # audio client
-    cask "notion" # productivity workspace
-    cask "obsidian" # note-taking
-    cask "notion-calendar" # elegant calendar
-    cask "raycast" # supercharged command launcher
-    cask "rectangle" # window management
-    cask "alt-tab" # windows-like alt-tab
-    cask "todoist-app" # task management
+cask "spotify"
+cask "notion"
+cask "obsidian"
+cask "notion-calendar"
+cask "raycast"
+cask "rectangle"
+cask "alt-tab"
+cask "todoist-app"
 
-    # communication
-    cask "zoom" if ENV['HOMEBREW_BUNDLE_INSTALL_ZOOM']
-    # cask "discord"
-    cask "legcord" # custom discord client - has a menubar icon
+cask "zoom" if ENV['HOMEBREW_BUNDLE_INSTALL_ZOOM']
+cask "legcord"
 
-    # utilities
-    cask "stats" # menubar resource monitor
-    cask "onyx" # system utilities & maintenance
-    cask "omnidisksweeper" # disk maintenance
-    cask "keyboardcleantool" # disables keyboard to clean
-    cask "pearcleaner" # app uninstaller
-    cask "jordanbaird-ice" # menubar management
-    cask "karabiner-elements" # keyboard remapping for hyperkey
-    cask "cloudflare-warp"
+cask "stats"
+cask "onyx"
+cask "omnidisksweeper"
+cask "keyboardcleantool"
+cask "pearcleaner"
+cask "jordanbaird-ice"
+cask "karabiner-elements"
+cask "cloudflare-warp"
+brew "dockutil"
+cask "ente-auth"
 
-    if ENV['HOMEBREW_BUNDLE_INSTALL_BITWARDEN']
-      if OS.mac?
-        brew "mas" # Mac App Store CLI
-        mas "Bitwarden", id: 1352778147 # MAS version for browser integration
-      else
-        cask "bitwarden"
-      end
-    end
+if ENV['HOMEBREW_BUNDLE_INSTALL_BITWARDEN']
+  if OS.mac?
+    brew "mas"
+    mas "Bitwarden", id: 1352778147
+  else
+    cask "bitwarden"
+  end
+end
 
-    cask "ente-auth" # 2fa
+cask "ghostty"
+cask "sublime-merge"
+cask "visual-studio-code"
+cask "antigravity"
+cask "zed"
+cask "intellij-idea"
+cask "jetbrains-toolbox"
+cask "yaak"
+brew "gemini-cli"
 
-    # dev apps
-    cask "ghostty" # terminal emulator
-    cask "sublime-merge" # git source control app
-    cask "visual-studio-code" # code editor
-    cask "antigravity" # code editor
-    cask "zed" # code editor
-    cask "intellij-idea" # java IDE
-    cask "jetbrains-toolbox" # manage JetBrains IDEs
-    cask "yaak"
-
-# Media stuff
-brew "yt-dlp" # youtube downloader
-brew "ffmpeg" # a/v processing
-brew "gallery-dl" # social-media downloader
-
-# AI stuff
-brew "gemini-cli" # cli for Google Gemini
-
-# Dev stuff
-brew "dockutil" # manage dock items
 cask "font-cascadia-code"
 cask "font-commit-mono"
 cask "font-noto-sans-mono"
 cask "font-ubuntu-mono"
 cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
-brew "gh" # github cli
-brew "git" # version control
-brew "sdkman/tap/sdkman-cli" # java version manager
+brew "gh"
+brew "git"
+brew "sdkman/tap/sdkman-cli"
 
-# Languages
 brew "go"
 brew "python@3.13"
 
-# Javascript stuff
-brew "pnpm" # efficient package manager
+brew "pnpm"
 brew "yarn"
-brew "oven-sh/bun/bun" # all-in-one javascript runtime, bundler, package manager
-brew "deno" # next-generation javascript runtime
+brew "oven-sh/bun/bun"
+brew "deno"
 
-# Python stuff
-brew "virtualenv" # manage virtual environments
+brew "virtualenv"
