@@ -39,3 +39,6 @@ export BUN_INSTALL="$HOME/.bun"
 
 # Added by Antigravity
 export PATH="/Users/tommyliu/.antigravity/antigravity/bin:$PATH"
+
+# bun completions
+[ -s "/Users/tommyliu/.bun/_bun" ] && source "/Users/tommyliu/.bun/_bun"
