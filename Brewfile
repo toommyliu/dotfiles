@@ -7,14 +7,14 @@ cask "brave-browser"
 
 cask "zen"
 
+cask "alt-tab"
 cask "spotify"
 cask "notion"
 cask "obsidian"
 cask "notion-calendar"
 cask "raycast"
 cask "rectangle"
-cask "alt-tab"
-cask "todoist-app"
+# cask "todoist-app"
 
 cask "zoom" if ENV['HOMEBREW_BUNDLE_INSTALL_ZOOM']
 cask "legcord"
@@ -24,7 +24,11 @@ cask "onyx"
 cask "omnidisksweeper"
 cask "keyboardcleantool"
 cask "pearcleaner"
-cask "jordanbaird-ice"
+if OS.mac? && MacOS.version >= :tahoe
+  cask "jordanbaird-ice@beta"
+else
+  cask "jordanbaird-ice"
+end
 cask "karabiner-elements"
 cask "cloudflare-warp"
 brew "dockutil"
@@ -48,6 +52,7 @@ cask "intellij-idea"
 cask "jetbrains-toolbox"
 cask "yaak"
 brew "gemini-cli"
+brew "lazygit"
 
 cask "font-cascadia-code"
 cask "font-commit-mono"
