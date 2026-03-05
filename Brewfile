@@ -7,7 +7,7 @@ cask "brave-browser"
 
 cask "zen"
 
-cask "alt-tab"
+# cask "alt-tab"
 cask "spotify"
 cask "notion"
 cask "obsidian"
