@@ -40,9 +40,10 @@ echo "Configuring dock..."
     dockutil --add /System/Applications/Messages.app --no-restart
     dockutil --add /System/Applications/Mail.app --no-restart
     dockutil --add /Applications/Notion.app --no-restart
+    dockutil --add /Applications/Obsidian.app --no-restart
     dockutil --add '/Applications/Notion Calendar.app' --no-restart
     dockutil --add /System/Applications/Notes.app --no-restart
-    dockutil --add /Applications/Todoist.app --no-restart
+    dockutil --add /Applications/Reminders.app --no-restart
     dockutil --add /Applications/Helium.app --no-restart
     dockutil --add /Applications/Legcord.app --no-restart
     dockutil --add /Applications/Spotify.app --no-restart
