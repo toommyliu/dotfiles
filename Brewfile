@@ -69,6 +69,7 @@ brew "python@3.13"
 
 brew "pnpm"
 brew "yarn"
+brew "fnm"
 brew "oven-sh/bun/bun"
 brew "deno"
 

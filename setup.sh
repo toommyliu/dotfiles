@@ -97,27 +97,13 @@ else
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-# install nvm
-if [ ! -d "$HOME/.nvm" ]; then
-  echo "Installing NVM..."
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-fi
-
-# load nvm for current session
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# install node versions
-if command -v nvm &>/dev/null; then
-  echo "Installing Node.js versions..."
-  nvm install --lts
-  nvm install node
-  nvm alias default node
-  nvm use default
-  echo "Node.js versions installed:"
-  nvm list
-else
-  echo "Warning: nvm command not available. Restart your terminal and re-run this script."
+# install node
+if command -v fnm &>/dev/null; then
+  echo "Installing Node.js..."
+  fnm install --lts
+  fnm install node
+  fnm default node
+  fnm list
 fi
 
 # install rust
