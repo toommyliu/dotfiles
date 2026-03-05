@@ -4,10 +4,12 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
+# DISABLE_AUTO_UPDATE="true"
+# DISABLE_MAGIC_FUNCTIONS="true"
+# DISABLE_COMPFIX="true"
+
 # fnm
 eval "$(fnm env --use-on-cd)"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # SDKMAN
 if command -v brew &>/dev/null; then
@@ -22,8 +24,8 @@ if command -v go &>/dev/null; then
 fi
 
 # Python 3.13
-if command -v brew &>/dev/null && brew list python@3.13 &>/dev/null 2>&1; then
-  export PATH="$(brew --prefix python@3.13)/bin:$PATH"
+if [[ -d /opt/homebrew/opt/python@3.13/bin ]]; then
+  export PATH="/opt/homebrew/opt/python@3.13/bin:$PATH"
 fi
 
 # pnpm
