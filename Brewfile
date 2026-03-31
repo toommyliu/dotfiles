@@ -1,5 +1,6 @@
 tap "sdkman/tap"
 tap "oven-sh/bun"
+tap "manaflow-ai/cmux"
 
 cask "helium-browser"
 cask "google-chrome"
@@ -44,6 +45,7 @@ if ENV['HOMEBREW_BUNDLE_INSTALL_BITWARDEN']
 end
 
 cask "ghostty"
+cask "cmux"
 cask "sublime-merge"
 cask "visual-studio-code"
 cask "antigravity"
