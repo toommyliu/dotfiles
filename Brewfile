@@ -25,11 +25,12 @@ cask "onyx"
 cask "omnidisksweeper"
 cask "keyboardcleantool"
 cask "pearcleaner"
-if OS.mac? && MacOS.version >= :tahoe
-  cask "jordanbaird-ice@beta"
-else
-  cask "jordanbaird-ice"
-end
+# if OS.mac? && MacOS.version >= :tahoe
+# cask "jordanbaird-ice@beta"
+# else
+# cask "jordanbaird-ice"
+# end
+cask "thaw" # updated version of ice
 cask "karabiner-elements"
 cask "cloudflare-warp"
 brew "dockutil"
