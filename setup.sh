@@ -122,5 +122,6 @@ ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
 # document apps to install manually
 echo "Manually install:"
 echo "  • CleanShot X"
+echo "  • Dropover"
 
 echo "Setup complete!"
