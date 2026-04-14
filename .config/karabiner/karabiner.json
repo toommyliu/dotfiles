@@ -22,14 +22,12 @@
                     ]
                   }
                 ],
-                "": "Press and release under 200ms → treated as a tap → to_if_alone fires → caps lock toggles",
                 "to_if_alone": [
                   {
                     "key_code": "caps_lock",
                     "hold_down_milliseconds": 100
                   }
                 ],
-                "": "Press and hold over 200ms → treated as a hold → to fires → hyper key activates",
                 "parameters": {
                   "basic.to_if_alone_timeout_milliseconds": 200
                 }
