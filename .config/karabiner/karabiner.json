@@ -31,6 +31,23 @@
                     "key_code": "vk_none"
                   }
                 ],
+                "conditions": [
+                  {
+                    "type": "frontmost_application_unless",
+                    "bundle_identifiers": [
+                      "^com\\.parallels(?:\\.|$)",
+                      "^com\\.parallels\\.desktop(?:\\.|$)",
+                      "^com\\.parallels\\.vm(?:\\.|$)",
+                      "^com\\.parallels\\.winapp(?:\\.|$)",
+                      "^com\\.parallels\\.desktop\\.console(?:\\.|$)"
+                    ],
+                    "file_paths": [
+                      "^/Applications/Parallels Desktop\\.app/",
+                      "^/Users/[^/]+/Applications \\(Parallels\\)/",
+                      "^/Users/[^/]+/Parallels/.*\\.pvm/"
+                    ]
+                  }
+                ],
                 "parameters": {
                   "basic.to_if_alone_timeout_milliseconds": 200
                 }
