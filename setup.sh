@@ -72,6 +72,24 @@ else
   echo "Warning: Brewfile not found at $PWD/Brewfile"
 fi
 
+echo "Configuring pnpm..."
+if command -v pnpm &>/dev/null; then
+  PNPM_VERSION="$(pnpm --version)"
+  PNPM_MAJOR_VERSION="${PNPM_VERSION%%.*}"
+
+  if ((PNPM_MAJOR_VERSION < 11)); then
+    echo "Error: pnpm 11 or newer is required; found $PNPM_VERSION."
+    exit 1
+  fi
+
+  mkdir -p "$HOME/Library/Preferences/pnpm"
+  mkdir -p "$HOME/Library/pnpm/bin"
+  ln -sf "$PWD/.config/pnpm/config.yaml" "$HOME/Library/Preferences/pnpm/config.yaml"
+else
+  echo "Error: pnpm is required but was not found after Homebrew installation."
+  exit 1
+fi
+
 # symlink ghostty config
 echo "Symlinking Ghostty config..."
 mkdir -p "$HOME/.config/ghostty"
