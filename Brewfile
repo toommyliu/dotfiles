@@ -65,6 +65,7 @@ cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
 brew "gh"
 brew "git"
+brew "syncthing"
 brew "sdkman/tap/sdkman-cli"
 
 brew "go"
