@@ -1,6 +1,7 @@
 tap "sdkman/tap"
 tap "oven-sh/bun"
 tap "manaflow-ai/cmux"
+tap "steipete/tap"
 
 cask "helium-browser"
 cask "google-chrome"
@@ -35,6 +36,8 @@ cask "karabiner-elements"
 cask "cloudflare-warp"
 brew "dockutil"
 cask "ente-auth"
+brew "mole"
+brew "ffmpeg"
 
 if ENV['HOMEBREW_BUNDLE_INSTALL_BITWARDEN']
   if OS.mac?
@@ -47,6 +50,8 @@ end
 
 cask "ghostty"
 cask "cmux"
+cask "codex"
+cask "steipete/tap/codexbar"
 cask "sublime-merge"
 cask "visual-studio-code"
 cask "antigravity"
@@ -69,12 +74,12 @@ brew "syncthing"
 brew "sdkman/tap/sdkman-cli"
 
 brew "go"
+
 brew "python@3.13"
+brew "uv"
 
 brew "pnpm"
 # brew "yarn"
 brew "fnm"
 brew "oven-sh/bun/bun"
 brew "deno"
-
-brew "virtualenv"
