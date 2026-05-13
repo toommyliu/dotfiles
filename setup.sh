@@ -140,6 +140,8 @@ ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
 # document apps to install manually
 echo "Manually install:"
 echo "  • CleanShot X"
-echo "  • Dropover"
+echo ""
+echo "Optional services:"
+echo "  • Syncthing: brew services start syncthing"
 
 echo "Setup complete!"
