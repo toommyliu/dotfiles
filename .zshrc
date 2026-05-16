@@ -1,20 +1,30 @@
 # Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
+ZSH_DISABLE_COMPFIX=true
 ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
-# DISABLE_AUTO_UPDATE="true"
 # DISABLE_MAGIC_FUNCTIONS="true"
-# DISABLE_COMPFIX="true"
+
+typeset -U path PATH
 
 # fnm
 eval "$(fnm env --use-on-cd)"
 
 # SDKMAN
-if command -v brew &>/dev/null; then
-  export SDKMAN_DIR="$(brew --prefix sdkman-cli)/libexec"
-  [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+export SDKMAN_DIR="/opt/homebrew/opt/sdkman-cli/libexec"
+if [[ -d "${SDKMAN_DIR}/candidates/java/current" ]]; then
+  export JAVA_HOME="${SDKMAN_DIR}/candidates/java/current"
+  export PATH="${JAVA_HOME}/bin:${PATH}"
+fi
+
+if [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]; then
+  sdk() {
+    unfunction sdk
+    source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+    sdk "$@"
+  }
 fi
 
 # Go
