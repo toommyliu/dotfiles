@@ -1,5 +1,3 @@
-tap "sdkman/tap"
-tap "oven-sh/bun"
 tap "manaflow-ai/cmux"
 tap "steipete/tap"
 
@@ -71,15 +69,5 @@ cask "font-jetbrains-mono-nerd-font"
 brew "gh"
 brew "git"
 brew "syncthing"
-brew "sdkman/tap/sdkman-cli"
-
-brew "go"
-
-brew "python@3.13"
+brew "mise"
 brew "uv"
-
-brew "pnpm"
-# brew "yarn"
-brew "fnm"
-brew "oven-sh/bun/bun"
-brew "deno"

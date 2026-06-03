@@ -72,9 +72,19 @@ else
   echo "Warning: Brewfile not found at $PWD/Brewfile"
 fi
 
+echo "Configuring mise..."
+mkdir -p "$HOME/.config/mise"
+ln -sf "$PWD/.config/mise/config.toml" "$HOME/.config/mise/config.toml"
+
+if command -v mise &>/dev/null; then
+  mise -y install
+else
+  echo "Error: mise is required but was not found after Homebrew installation."
+  exit 1
+fi
+
 echo "Configuring pnpm..."
-if command -v pnpm &>/dev/null; then
-  PNPM_VERSION="$(pnpm --version)"
+if PNPM_VERSION="$(mise exec -- pnpm --version)"; then
   PNPM_MAJOR_VERSION="${PNPM_VERSION%%.*}"
 
   if ((PNPM_MAJOR_VERSION < 11)); then
@@ -86,7 +96,7 @@ if command -v pnpm &>/dev/null; then
   mkdir -p "$HOME/Library/pnpm/bin"
   ln -sf "$PWD/.config/pnpm/config.yaml" "$HOME/Library/Preferences/pnpm/config.yaml"
 else
-  echo "Error: pnpm is required but was not found after Homebrew installation."
+  echo "Error: pnpm is required but was not found after mise installation."
   exit 1
 fi
 
@@ -115,15 +125,6 @@ else
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-# install node
-if command -v fnm &>/dev/null; then
-  echo "Installing Node.js..."
-  fnm install --lts
-  fnm install node
-  fnm default node
-  fnm list
-fi
-
 # install rust
 if [ ! -d "$HOME/.cargo" ]; then
   echo "Installing Rust..."
@@ -137,10 +138,6 @@ echo "Symlinking dotfiles..."
 ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
 
-# document apps to install manually
-echo "Manually install:"
-echo "  • CleanShot X"
-echo ""
 echo "Optional services:"
 echo "  • Syncthing: brew services start syncthing"
 
