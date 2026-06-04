@@ -41,16 +41,16 @@ echo "Configuring dock..."
     dockutil --add /System/Applications/Mail.app --no-restart
     dockutil --add /Applications/Notion.app --no-restart
     dockutil --add /Applications/Obsidian.app --no-restart
-    dockutil --add '/Applications/Notion Calendar.app' --no-restart
+    dockutil --add /System/Applications/Calendar.app --no-restart
     dockutil --add /System/Applications/Notes.app --no-restart
-    dockutil --add /Applications/Reminders.app --no-restart
+    dockutil --add /System/Applications/Reminders.app --no-restart
     dockutil --add /Applications/Helium.app --no-restart
     dockutil --add /Applications/Legcord.app --no-restart
     dockutil --add /Applications/Spotify.app --no-restart
     dockutil --add "/Applications/Visual Studio Code.app" --no-restart
     dockutil --add /Applications/Antigravity.app --no-restart
     dockutil --add /Applications/Zed.app --no-restart
-    dockutil --add /Applications/Ghostty.app --no-restart
+    dockutil --add /Applications/cmux.app --no-restart
     dockutil --add "/Applications/Sublime Merge.app" --no-restart
 
 killall Dock
