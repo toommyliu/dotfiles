@@ -1,8 +1,29 @@
 #!/bin/bash
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 HOMEBREW_BUNDLE_INSTALL_BITWARDEN=""
 HOMEBREW_BUNDLE_INSTALL_ZOOM=""
+
+is_interactive() {
+  [ -t 0 ] && [ -t 1 ]
+}
+
+prompt_yes_no() {
+  local prompt="$1"
+  local reply
+
+  read -r -p "$prompt [y/N] " reply
+  case "$reply" in
+    [Yy]|[Yy][Ee][Ss])
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
 
 for arg in "$@"; do
   case $arg in
@@ -19,12 +40,18 @@ for arg in "$@"; do
       echo "  --bitwarden    Install Bitwarden from Mac App Store (for macOS only)"
       echo "  --zoom         Install Zoom"
       echo "  --help, -h     Show this help message"
+      echo ""
+      echo "Interactive setup may also prompt to run:"
+      echo "  ./setup_raycast.sh"
+      echo "  ./setup_tools.sh"
       exit 0
       ;;
   esac
 done
 
 echo "Starting setup..."
+
+cd "$SCRIPT_DIR"
 
 # install rosetta 2
 if [ ! -d "/usr/libexec/rosetta" ]; then
@@ -144,6 +171,24 @@ fi
 echo "Symlinking dotfiles..."
 ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
+
+if is_interactive; then
+  if prompt_yes_no "Set up Raycast?"; then
+    "$SCRIPT_DIR/setup_raycast.sh"
+  else
+    echo "Skipping Raycast setup. Run ./setup_raycast.sh later to import Raycast settings."
+  fi
+
+  if prompt_yes_no "Install personal tools?"; then
+    "$SCRIPT_DIR/setup_tools.sh"
+  else
+    echo "Skipping personal tools. Run ./setup_tools.sh later to install wallctl and dux."
+  fi
+else
+  echo "Skipping interactive optional setup."
+  echo "Run ./setup_raycast.sh to import Raycast settings."
+  echo "Run ./setup_tools.sh to install personal tools."
+fi
 
 echo "Optional services:"
 echo "  • Syncthing: brew services start syncthing"

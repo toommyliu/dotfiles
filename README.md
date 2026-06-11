@@ -8,3 +8,15 @@ cd ~/dotfiles
 chmod +x setup.sh
 ./setup.sh
 ```
+
+During an interactive run, `setup.sh` prompts for optional setup:
+
+- `./setup_raycast.sh` imports the latest Raycast `.rayconfig`.
+- `./setup_tools.sh` installs personal workflow tools.
+
+You can also run either script directly:
+
+```bash
+./setup_raycast.sh
+./setup_tools.sh
+```
