@@ -100,6 +100,13 @@ else
   exit 1
 fi
 
+echo "Installing Pi..."
+if command -v pi &>/dev/null; then
+  echo "Pi already installed at: $(command -v pi)"
+else
+  mise exec -- npm install -g --ignore-scripts --min-release-age=0 --no-fund --no-audit --loglevel=error --progress=false @earendil-works/pi-coding-agent
+fi
+
 # symlink ghostty config
 echo "Symlinking Ghostty config..."
 mkdir -p "$HOME/.config/ghostty"
