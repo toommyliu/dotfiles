@@ -179,15 +179,15 @@ if is_interactive; then
     echo "Skipping Raycast setup. Run ./setup_raycast.sh later to import Raycast settings."
   fi
 
-  if prompt_yes_no "Install personal tools?"; then
+  if prompt_yes_no "Set up personal utilities?"; then
     "$SCRIPT_DIR/setup_tools.sh"
   else
-    echo "Skipping personal tools. Run ./setup_tools.sh later to install wallctl and dux."
+    echo "Skipping personal utilities. Run ./setup_tools.sh later to set up utilities and install app artifacts."
   fi
 else
   echo "Skipping interactive optional setup."
   echo "Run ./setup_raycast.sh to import Raycast settings."
-  echo "Run ./setup_tools.sh to install personal tools."
+  echo "Run ./setup_tools.sh to set up personal utilities and install app artifacts."
 fi
 
 echo "Optional services:"

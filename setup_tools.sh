@@ -52,7 +52,73 @@ install_dux() {
   cargo install --path "$PROJECTS_DIR/dux" --locked
 }
 
-echo "Installing personal tools..."
+applications_dir() {
+  if [ -d "/Applications" ] && [ -w "/Applications" ]; then
+    printf '%s\n' "/Applications"
+  else
+    mkdir -p "$HOME/Applications"
+    printf '%s\n' "$HOME/Applications"
+  fi
+}
+
+latest_artifact() {
+  local app_name="$1"
+  local artifact_dir="$2"
+  local artifact
+
+  artifact="$(ls -t "$artifact_dir"/"$app_name"-*.zip 2>/dev/null | head -n 1 || true)"
+
+  if [ -z "$artifact" ]; then
+    echo "Error: no $app_name artifact found in $artifact_dir." >&2
+    exit 1
+  fi
+
+  printf '%s\n' "$artifact"
+}
+
+install_app_artifact() {
+  local app_name="$1"
+  local artifact="$2"
+  local staging_dir app_path install_dir target
+
+  staging_dir="$(mktemp -d "${TMPDIR:-/tmp}/utility-artifact.XXXXXX")"
+  ditto -x -k "$artifact" "$staging_dir"
+
+  app_path="$(find "$staging_dir" -maxdepth 2 -type d -name "$app_name.app" -print -quit)"
+  if [ -z "$app_path" ]; then
+    echo "Error: $artifact did not contain $app_name.app." >&2
+    rm -rf "$staging_dir"
+    exit 1
+  fi
+
+  install_dir="$(applications_dir)"
+  target="$install_dir/$app_name.app"
+
+  echo "Installing $app_name.app to $install_dir..."
+  rm -rf "$target"
+  ditto "$app_path" "$target"
+  rm -rf "$staging_dir"
+}
+
+build_perch_artifact() {
+  echo "Building Perch artifact..."
+  (
+    cd "$PROJECTS_DIR/perch"
+    ./scripts/perch artifact
+  )
+  install_app_artifact "Perch" "$(latest_artifact "Perch" "$PROJECTS_DIR/perch/build/artifacts")"
+}
+
+build_tally_artifact() {
+  echo "Building Tally artifact..."
+  (
+    cd "$PROJECTS_DIR/tally"
+    ./scripts/artifact.sh
+  )
+  install_app_artifact "Tally" "$(latest_artifact "Tally" "$PROJECTS_DIR/tally/build/artifacts")"
+}
+
+echo "Setting up personal utilities..."
 
 mkdir -p "$PROJECTS_DIR"
 source_cargo_env
@@ -62,12 +128,20 @@ ensure_command cargo
 
 clone_or_update "wallctl" "https://github.com/toommyliu/wallctl.git"
 clone_or_update "dux" "https://github.com/toommyliu/dux.git"
+clone_or_update "perch" "https://github.com/toommyliu/perch.git"
+clone_or_update "tally" "https://github.com/toommyliu/tally.git"
 
 install_wallctl
 install_dux
+
+echo "Building utility artifacts..."
+ensure_command xcodebuild
+ensure_command ditto
+build_perch_artifact
+build_tally_artifact
 
 echo "Verifying installs..."
 wallctl --version
 dux --help >/dev/null
 
-echo "Personal tools installed."
+echo "Personal utilities set up, utility artifacts built, and apps installed."
