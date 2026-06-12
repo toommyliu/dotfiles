@@ -44,6 +44,7 @@ for arg in "$@"; do
       echo "Interactive setup may also prompt to run:"
       echo "  ./setup_raycast.sh"
       echo "  ./setup_tools.sh"
+      echo "  ./setup_agents.sh"
       exit 0
       ;;
   esac
@@ -184,10 +185,17 @@ if is_interactive; then
   else
     echo "Skipping personal utilities. Run ./setup_tools.sh later to set up utilities and install app artifacts."
   fi
+
+  if prompt_yes_no "Set up agents?"; then
+    "$SCRIPT_DIR/setup_agents.sh"
+  else
+    echo "Skipping agents setup. Run ./setup_agents.sh later to symlink ~/.agents."
+  fi
 else
   echo "Skipping interactive optional setup."
   echo "Run ./setup_raycast.sh to import Raycast settings."
   echo "Run ./setup_tools.sh to set up personal utilities and install app artifacts."
+  echo "Run ./setup_agents.sh to symlink ~/.agents."
 fi
 
 echo "Optional services:"
