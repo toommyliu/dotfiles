@@ -1,5 +1,7 @@
 # dotfiles
 
+my dotfiles — a collection of scripts, tools, and configurations to set up a new machine :)
+
 ## quickstart
 
 ```bash
@@ -9,16 +11,11 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
-During an interactive run, `setup.sh` prompts for optional setup:
+## contents
 
-- `./setup_raycast.sh` imports the latest Raycast `.rayconfig`.
-- `./setup_tools.sh` sets up personal utilities and installs app artifacts.
-- `./setup_agents.sh` symlinks `~/.agents` to the versioned agents setup.
-
-You can also run either script directly:
-
-```bash
-./setup_raycast.sh
-./setup_tools.sh
-./setup_agents.sh
-```
+- `setup.sh` — the main setup script that orchestrates the entire setup process.
+- `setup_macos.sh` — configures macOS settings and preferences.
+- `setup_raycast.sh` — imports the latest Raycast `.rayconfig`.
+- `setup_tools.sh` — sets up my series of custom apps and tools i use.
+- `setup_agents.sh` — symlinks content for agents.
+- `setup_github.sh` — configures GitHub SSH keys.
