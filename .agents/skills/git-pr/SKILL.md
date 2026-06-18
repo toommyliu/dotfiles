@@ -95,7 +95,7 @@ Suggested PR body:
 - ...
 ```
 
-Use `Not run (reason: ...)` in Testing when no verification was performed. Add risk, migration, or screenshot sections only when they are genuinely useful for the change.
+Use `Not run (reason: ...)` in Testing when no verification was performed. In all generated text, including commit messages, PR titles, PR bodies, testing notes, and dry-run summaries, mention repository files with paths relative to the repository root. Do not include absolute paths from the local machine such as `/Users/...`, `/tmp/...`, or workspace-specific checkout paths unless the absolute path is itself the subject of the change. Add risk, migration, or screenshot sections only when they are genuinely useful for the change.
 
 5. Copy text to the clipboard when useful or requested:
 
