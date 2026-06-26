@@ -1,4 +1,5 @@
 tap "manaflow-ai/cmux"
+tap "modem-dev/tap"
 tap "steipete/tap"
 
 cask "helium-browser"
@@ -60,6 +61,7 @@ cask "zed"
 # cask "jetbrains-toolbox"
 cask "yaak"
 brew "lazygit"
+brew "hunk"
 
 cask "font-cascadia-code"
 cask "font-commit-mono"
