@@ -128,8 +128,6 @@ export PNPM_HOME="$HOME/Library/pnpm"
 
 # Added by Antigravity
 export PATH="/Users/tommyliu/.antigravity/antigravity/bin:$PATH"
-# Added by Antigravity IDE
-export PATH="/Users/tommyliu/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 # mise
 eval "$(mise activate zsh)"

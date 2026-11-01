@@ -141,9 +141,7 @@ ln -sf "$PWD/.config/karabiner/karabiner.json" "$HOME/.config/karabiner/karabine
 # symlink vscode-settings
 echo "Symlinking VS Code settings..."
 mkdir -p "$HOME/Library/Application Support/Code/User"
-mkdir -p "$HOME/Library/Application Support/Antigravity/User"
 ln -sf "$PWD/.config/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
-ln -sf "$PWD/.config/vscode/settings.json" "$HOME/Library/Application Support/Antigravity/User/settings.json"
 
 # install oh-my-zsh
 echo "Installing oh-my-zsh..."
