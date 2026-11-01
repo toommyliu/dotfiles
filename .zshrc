@@ -103,3 +103,5 @@ export PATH="/Users/tommyliu/.antigravity/antigravity/bin:$PATH"
 
 # mise
 eval "$(mise activate zsh)"
+
+export PATH="$HOME/.local/bin:$PATH"

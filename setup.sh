@@ -159,6 +159,13 @@ else
   echo "Rust already installed, skipping..."
 fi
 
+if [ ! -x "$HOME/.local/bin/claude" ]; then
+  echo "Installing Claude Code..."
+  curl -fsSL https://claude.ai/install.sh | bash
+else
+  echo "Claude Code already installed, skipping..."
+fi
+
 # symlink dotfiles
 echo "Symlinking dotfiles..."
 ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
