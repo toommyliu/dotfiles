@@ -47,7 +47,6 @@ echo "Configuring dock..."
     "/Applications/Legcord.app" \
     "/Applications/Spotify.app" \
     "/Applications/Visual Studio Code.app" \
-    "/Applications/Antigravity.app" \
     "/Applications/Zed.app" \
     "/Applications/cmux.app" \
     "/Applications/Sublime Merge.app"; do
