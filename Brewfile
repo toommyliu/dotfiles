@@ -33,7 +33,6 @@ cask "thaw" # updated version of ice
 cask "karabiner-elements"
 cask "cloudflare-warp"
 brew "dockutil"
-cask "ente-auth"
 brew "mole"
 brew "ffmpeg"
 
