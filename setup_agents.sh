@@ -4,6 +4,23 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SOURCE="$SCRIPT_DIR/.agents"
 TARGET="$HOME/.agents"
+CLAUDE_SKILLS="$HOME/.claude/skills"
+
+link() {
+  local source="$1" target="$2" backup
+
+  if [ -L "$target" ]; then
+    [ "$(readlink "$target")" = "$source" ] && return 0
+    rm "$target"
+  elif [ -e "$target" ]; then
+    backup="$target.backup.$(date +%Y%m%d%H%M%S)"
+    echo "Backing up existing $target to $backup"
+    mv "$target" "$backup"
+  fi
+
+  ln -s "$source" "$target"
+  echo "Linked $target -> $source"
+}
 
 if [ ! -d "$SOURCE" ]; then
   echo "Error: agents source directory not found at $SOURCE" >&2
@@ -11,20 +28,16 @@ if [ ! -d "$SOURCE" ]; then
 fi
 
 echo "Symlinking agents setup..."
+link "$SOURCE" "$TARGET"
 
-if [ -L "$TARGET" ]; then
-  CURRENT_TARGET="$(readlink "$TARGET")"
-  if [ "$CURRENT_TARGET" = "$SOURCE" ]; then
-    echo "$TARGET already points to $SOURCE"
-    exit 0
+mkdir -p "$CLAUDE_SKILLS"
+for skill in "$SOURCE"/skills/*/; do
+  name="$(basename "$skill")"
+  if [ -e "$CLAUDE_SKILLS/$name" ] && [ ! -L "$CLAUDE_SKILLS/$name" ]; then
+    echo "Skipping $CLAUDE_SKILLS/$name: a real directory is in the way. Remove it to use the dotfiles version."
+    continue
   fi
+  link "$TARGET/skills/$name" "$CLAUDE_SKILLS/$name"
+done
 
-  rm "$TARGET"
-elif [ -e "$TARGET" ]; then
-  BACKUP="$TARGET.backup.$(date +%Y%m%d%H%M%S)"
-  echo "Backing up existing $TARGET to $BACKUP"
-  mv "$TARGET" "$BACKUP"
-fi
-
-ln -s "$SOURCE" "$TARGET"
-echo "Agents setup linked: $TARGET -> $SOURCE"
+echo "Agents linked for Codex ($TARGET) and Claude Code ($CLAUDE_SKILLS)."
