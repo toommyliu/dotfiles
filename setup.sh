@@ -95,7 +95,9 @@ if [ -f "$PWD/Brewfile" ]; then
   echo "Installing packages from Brewfile..."
   export HOMEBREW_BUNDLE_INSTALL_BITWARDEN
   export HOMEBREW_BUNDLE_INSTALL_ZOOM
-  brew bundle --file="$PWD/Brewfile"
+  if ! brew bundle --file="$PWD/Brewfile"; then
+    echo "Warning: some Brewfile entries failed to install. Continuing setup; re-run 'brew bundle' after fixing them."
+  fi
 else
   echo "Warning: Brewfile not found at $PWD/Brewfile"
 fi
