@@ -5,27 +5,45 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
-function _gb_delete_if_remote_merged() {
-  local branch="$1"
-  local remote_head="$2"
-  local merge_base synthetic
+function _gb_is_merged() {
+  local branch="$1" target="$2" upstream="$3" merged="$4" merge_base synthetic oid
 
-  [[ -z "$branch" || -z "$remote_head" ]] && return 1
+  command git merge-base --is-ancestor "$branch" "$target" && return 0
 
-  if command git merge-base --is-ancestor "$branch" "$remote_head"; then
-    command git branch -D -- "$branch"
-    return $?
-  fi
-
-  merge_base="$(command git merge-base "$remote_head" "$branch")" || return 1
+  merge_base="$(command git merge-base "$target" "$branch")" || return 1
   synthetic="$(command git commit-tree "$(command git rev-parse "$branch^{tree}")" -p "$merge_base" -m _)" || return 1
+  [[ "$(command git cherry "$target" "$synthetic")" == -* ]] && return 0
 
-  if [[ "$(command git cherry "$remote_head" "$synthetic")" == -* ]]; then
-    command git branch -D -- "$branch"
-    return $?
+  [[ -n "$upstream" && -n "$merged" ]] || return 1
+  oid="$(print -r -- "$merged" | awk -v u="$upstream" '$1 == u { print $2; exit }')"
+  [[ -n "$oid" ]] && command git merge-base --is-ancestor "$branch" "$oid" 2>/dev/null
+}
+
+function _gb_delete_branch() {
+  local branch="$1" worktree="$2"
+  if [[ -n "$worktree" ]]; then
+    command git worktree remove -- "$worktree" || return
   fi
+  command git branch -D -- "$branch"
+}
 
-  return 1
+function _gb_cleanup() {
+  local gone_only="$1" target_ref current_branch branch upstream track worktree merged
+  local -a protected_branches
+
+  target_ref="$(_gb_remote_merged_setup "$2")" || return
+  current_branch="$(command git branch --show-current)"
+  protected_branches=(main master trunk develop development dev devel "${target_ref#*/}")
+  command git worktree prune
+  (( $+commands[gh] )) && merged="$(command gh pr list --state merged --limit 1000 --json headRefName,headRefOid --jq '.[] | "\(.headRefName) \(.headRefOid)"' 2>/dev/null)"
+
+  command git for-each-ref refs/heads/ --format='%(refname:short):%(upstream:lstrip=3):%(upstream:track):%(worktreepath)' |
+  while IFS=: read -r branch upstream track worktree; do
+    [[ -n "$gone_only" && "$track" != "[gone]" ]] && continue
+    [[ -z "$branch" || "$branch" == "$current_branch" ]] && continue
+    (( ${protected_branches[(Ie)$branch]} )) && continue
+    _gb_is_merged "$branch" "$target_ref" "$upstream" "$merged" && _gb_delete_branch "$branch" "$worktree"
+  done
 }
 
 function _gb_remote_merged_setup() {
@@ -65,50 +83,41 @@ function _gb_remote_merged_setup() {
 }
 
 # Delete local branches already on the current trunk upstream, including squash/rebase merges.
-function gbdr() {
-  local target_ref current_branch target_branch branch protected
-  local -a protected_branches
-
-  target_ref="$(_gb_remote_merged_setup "$1")" || return
-  current_branch="$(command git branch --show-current)"
-  target_branch="${target_ref#*/}"
-  protected_branches=(main master trunk develop development dev devel "$target_branch")
-
-  command git for-each-ref refs/heads/ --format='%(refname:short)' | while read -r branch; do
-    [[ -z "$branch" || "$branch" == "$current_branch" ]] && continue
-
-    for protected in "${protected_branches[@]}"; do
-      [[ "$branch" == "$protected" ]] && continue 2
-    done
-
-    _gb_delete_if_remote_merged "$branch" "$target_ref"
-  done
-}
+function gbdr() { _gb_cleanup "" "$1" }
 compdef _git gbdr=git-branch
 
 # Make the stock "gone branch delete" alias squash/rebase-aware.
 unalias gbgd 2>/dev/null
-function gbgd() {
-  local target_ref current_branch target_branch branch track protected
-  local -a protected_branches
+function gbgd() { _gb_cleanup 1 "$1" }
+compdef _git gbgd=git-branch
 
-  target_ref="$(_gb_remote_merged_setup "$1")" || return
+unalias gbgD 2>/dev/null
+function gbgD() {
+  local current_branch branch track worktree i
+  local -a branches worktrees
+
+  command git fetch --prune || return
   current_branch="$(command git branch --show-current)"
-  target_branch="${target_ref#*/}"
-  protected_branches=(main master trunk develop development dev devel "$target_branch")
 
-  command git for-each-ref refs/heads/ --format='%(refname:short) %(upstream:track)' | while read -r branch track; do
-    [[ "$track" == "[gone]" ]] || continue
-    [[ -z "$branch" || "$branch" == "$current_branch" ]] && continue
+  command git for-each-ref refs/heads/ --format='%(refname:short):%(upstream:track):%(worktreepath)' |
+  while IFS=: read -r branch track worktree; do
+    [[ "$track" == "[gone]" && "$branch" != "$current_branch" ]] || continue
+    branches+=("$branch")
+    worktrees+=("$worktree")
+  done
 
-    for protected in "${protected_branches[@]}"; do
-      [[ "$branch" == "$protected" ]] && continue 2
-    done
+  (( $#branches )) || { echo "No gone branches."; return 0 }
+  for i in {1..$#branches}; do
+    print -r -- "  $branches[i]${worktrees[i]:+  (worktree $worktrees[i])}"
+  done
+  read -q "?Force-delete these $#branches branches? [y/N] " || { echo; return 1 }
+  echo
 
-    _gb_delete_if_remote_merged "$branch" "$target_ref"
+  for i in {1..$#branches}; do
+    _gb_delete_branch "$branches[i]" "$worktrees[i]"
   done
 }
-compdef _git gbgd=git-branch
+compdef _git gbgD=git-branch
 
 # DISABLE_MAGIC_FUNCTIONS="true"
 
