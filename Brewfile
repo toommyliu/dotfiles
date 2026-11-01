@@ -1,6 +1,5 @@
 tap "manaflow-ai/cmux"
 tap "modem-dev/tap"
-tap "steipete/tap"
 
 cask "helium-browser"
 cask "google-chrome"
@@ -50,8 +49,6 @@ end
 cask "ghostty"
 cask "cmux"
 cask "codex"
-cask "codex-app"
-cask "steipete/tap/codexbar"
 cask "sublime-merge"
 cask "visual-studio-code"
 cask "antigravity"
