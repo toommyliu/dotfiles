@@ -62,6 +62,7 @@ cask "yaak"
 brew "lazygit"
 brew "hunk"
 brew "cloc"
+brew "fastfetch"
 
 cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
