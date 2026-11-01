@@ -20,7 +20,6 @@ else
   ssh-keygen -t ed25519 -C "$EMAIL" -f "$KEY_FILE"
 fi
 
-eval "$(ssh-agent -s)"
 ssh-add --apple-use-keychain "$KEY_FILE" 2>/dev/null || ssh-add "$KEY_FILE"
 
 CONFIG_BLOCK="
