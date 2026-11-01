@@ -1,5 +1,5 @@
 [tools]
-node = "latest"
+node = "26"
 python = "3.14"
 go = "1.26"
 java = "25"
