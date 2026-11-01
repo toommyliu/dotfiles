@@ -168,6 +168,23 @@ else
   echo "Claude Code already installed, skipping..."
 fi
 
+vp_bin() {
+  local bin
+  for bin in "$HOME/.local/share/vite-plus/bin/vp" "$HOME/.vite-plus/bin/vp"; do
+    [ -x "$bin" ] && { echo "$bin"; return 0; }
+  done
+  return 1
+}
+
+if vp_bin >/dev/null; then
+  echo "Vite+ already installed, skipping..."
+else
+  echo "Installing Vite+..."
+  curl -fsSL https://vite.plus | VP_SELF_SETUP_NO_MODIFY_PATH=1 bash
+fi
+VP="$(vp_bin)" || { echo "Error: Vite+ was not found after installation." >&2; exit 1; }
+"$VP" env off
+
 # symlink dotfiles
 echo "Symlinking dotfiles..."
 ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"

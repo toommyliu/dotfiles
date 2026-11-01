@@ -101,6 +101,9 @@ export PNPM_HOME="$HOME/Library/pnpm"
 # Added by Antigravity
 export PATH="/Users/tommyliu/.antigravity/antigravity/bin:$PATH"
 
+[[ -f "$HOME/.config/vite-plus/env" ]] && . "$HOME/.config/vite-plus/env"
+[[ -f "$HOME/.vite-plus/env" ]] && . "$HOME/.vite-plus/env"
+
 # mise
 eval "$(mise activate zsh)"
 
