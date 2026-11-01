@@ -1,5 +1,6 @@
 tap "manaflow-ai/cmux", trusted: true
 tap "modem-dev/tap", trusted: true
+tap "toommyliu/tap", trusted: true
 
 cask "helium-browser"
 cask "google-chrome"
@@ -70,3 +71,9 @@ brew "git"
 brew "syncthing"
 brew "mise"
 brew "uv"
+
+brew "toommyliu/tap/wallctl"
+brew "toommyliu/tap/dux"
+cask "toommyliu/tap/perch"
+cask "toommyliu/tap/tally"
+cask "toommyliu/tap/ente-menubar"
