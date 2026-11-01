@@ -35,23 +35,28 @@ echo "Configuring dock..."
 
   dockutil --remove all --no-restart
 
-  # Add apps in specified order
-    # Finder would be here
-    dockutil --add /System/Applications/Messages.app --no-restart
-    dockutil --add /System/Applications/Mail.app --no-restart
-    dockutil --add /Applications/Notion.app --no-restart
-    dockutil --add /Applications/Obsidian.app --no-restart
-    dockutil --add /System/Applications/Calendar.app --no-restart
-    dockutil --add /System/Applications/Notes.app --no-restart
-    dockutil --add /System/Applications/Reminders.app --no-restart
-    dockutil --add /Applications/Helium.app --no-restart
-    dockutil --add /Applications/Legcord.app --no-restart
-    dockutil --add /Applications/Spotify.app --no-restart
-    dockutil --add "/Applications/Visual Studio Code.app" --no-restart
-    dockutil --add /Applications/Antigravity.app --no-restart
-    dockutil --add /Applications/Zed.app --no-restart
-    dockutil --add /Applications/cmux.app --no-restart
-    dockutil --add "/Applications/Sublime Merge.app" --no-restart
+  for app in \
+    "/System/Applications/Messages.app" \
+    "/System/Applications/Mail.app" \
+    "/Applications/Notion.app" \
+    "/Applications/Obsidian.app" \
+    "/System/Applications/Calendar.app" \
+    "/System/Applications/Notes.app" \
+    "/System/Applications/Reminders.app" \
+    "/Applications/Helium.app" \
+    "/Applications/Legcord.app" \
+    "/Applications/Spotify.app" \
+    "/Applications/Visual Studio Code.app" \
+    "/Applications/Antigravity.app" \
+    "/Applications/Zed.app" \
+    "/Applications/cmux.app" \
+    "/Applications/Sublime Merge.app"; do
+    if [ -d "$app" ]; then
+      dockutil --add "$app" --no-restart
+    else
+      echo "Skipping missing Dock app: $app"
+    fi
+  done
 
 killall Dock
 killall Finder
