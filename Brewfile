@@ -1,5 +1,5 @@
-tap "manaflow-ai/cmux"
-tap "modem-dev/tap"
+tap "manaflow-ai/cmux", trusted: true
+tap "modem-dev/tap", trusted: true
 
 cask "helium-browser"
 cask "google-chrome"
